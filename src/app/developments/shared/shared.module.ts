@@ -1,18 +1,20 @@
 import {NgModule} from "@angular/core";
-import {BreadcrumbComponent} from './components/breadcrumb/breadcrumb.component';
-import {NavbarComponent} from "./components/navbar/components/navbar.component";
-import {FooterComponent} from "./components/footer/components/footer.component";
+import { FooterComponent } from './components/footer/footer.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
-    BreadcrumbComponent,
+    FooterComponent,
     NavbarComponent,
-    FooterComponent
+    BreadcrumbComponent,
+    NotFoundComponent
   ],
   exports: [
-    BreadcrumbComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    BreadcrumbComponent
   ],
   imports: []
 })
