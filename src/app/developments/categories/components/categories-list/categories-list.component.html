@@ -1,0 +1,31 @@
+<!--<div *ngFor="let category of categoriesList">-->
+<!-- <h5>{{category.name}}</h5>-->
+<!--</div>-->
+
+<section class="categories container section">
+  <h3 class="section__title"><span>Popular</span> Categories</h3>
+
+  <div class="categories__container swiper"
+
+  >
+    <div class="swiper-wrapper">
+      <a class="category__item swiper-slide" *ngFor="let category of categoriesList"
+         (click)="handleCategoryClick(category?.id)">
+        <img
+          [src]="'assets/img/'+category?.categoryImagePath"
+          [alt]="category?.categoryImagePath"
+          class="category__img"
+        />
+
+        <h3 class="category__title">{{category?.name}}</h3>
+      </a>
+    </div>
+
+    <div class="swiper-button-next">
+      <i class="fi fi-rs-angle-right"></i>
+    </div>
+    <div class="swiper-button-prev">
+      <i class="fi fi-rs-angle-left"></i>
+    </div>
+  </div>
+</section>
