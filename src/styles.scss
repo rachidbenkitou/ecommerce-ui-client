@@ -613,15 +613,16 @@ table {
 .product__actions,
 .action__btn::before,
 .action__btn::after,
-.product__item:hover .product__img.default {
+  //.product__item:hover .product__img.default
+{
   opacity: 0;
 }
 
-.product__item:hover {
-  box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.1);
-}
+//.product__item:hover {
+//  box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.1);
+//}
 
-.product__item:hover .product__img.hover,
+//.product__item:hover .product__img.hover,
 .product__item:hover .product__actions,
 .action__btn:hover::before,
 .action__btn:hover::after {
@@ -1926,4 +1927,10 @@ table {
     display: block;
     width: 100%;
   }
+}
+
+.center-element {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

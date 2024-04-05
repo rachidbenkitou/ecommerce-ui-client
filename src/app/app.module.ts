@@ -3,19 +3,23 @@ import {BrowserModule, provideClientHydration} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {SharedModule} from "./developments/shared/shared.module";
 import {LayoutComponent} from "./developments/layout/components/layout/layout.component";
+import {HttpClientModule} from "@angular/common/http";
+import {NavbarComponent} from "./developments/shared/components/navbar/navbar.component";
+import {FooterComponent} from "./developments/shared/components/footer/footer.component";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    HttpClientModule,
   ],
   providers: [
     provideClientHydration()
