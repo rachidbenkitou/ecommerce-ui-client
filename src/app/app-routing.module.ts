@@ -20,6 +20,10 @@ const routes: Routes = [
         path: 'loginRegister',
         loadChildren: () => import('./developments/login-register/login-register.module').then(m => m.LoginRegisterModule)
       },
+      {
+        path: 'cart',
+        loadChildren: () => import('./developments/cart/cart.module').then(m => m.CartModule)
+      },
     ]
   },
   {

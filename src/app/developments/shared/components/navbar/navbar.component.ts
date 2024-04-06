@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {ProductsService} from "../../../products/services/products.service";
+import {Router} from '@angular/router';
+import {environment} from "../../../../../environements/environement";
 
 @Component({
   selector: 'app-navbar',
@@ -7,11 +9,20 @@ import {ProductsService} from "../../../products/services/products.service";
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-  productCount: number=0;
-  constructor(private productService: ProductsService) {
+  productCount: number = 0;
+
+  constructor(
+    private productService: ProductsService,
+    private router: Router
+  ) {
     this.productService.productCount$.subscribe(count => {
       this.productCount = count;
       // Update cart component or perform any other actions
     });
+  }
+
+  gotToHome() {
+    //this.router.navigate(['/products/homePage']);
+    window.location.href = `${environment.angularUrl}/products/homePage`;
   }
 }

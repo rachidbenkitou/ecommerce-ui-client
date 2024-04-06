@@ -9,11 +9,11 @@ import {ProductsService} from "../../services/products.service";
   styleUrl: './product-landing-page.component.scss'
 })
 export class ProductLandingPageComponent implements OnInit {
-  categoryList: any[] = [];
   popularProductList: any[] = [];
   newAddedProductList: any[] = [];
   packageList: any[] = [];
   productsList: any[] = [];
+  categoriesList: any[] = [];
 
   constructor(private categoryService: CategoriesService,
               private packageService: PackagesService,
@@ -22,12 +22,6 @@ export class ProductLandingPageComponent implements OnInit {
 
   addToCard(product: any) {
     console.log(product)
-  }
-
-  getCategories(): void {
-    this.categoryService.getCategories().subscribe(response => {
-      this.categoryList = response;
-    })
   }
 
   getProducts(): void {
@@ -42,7 +36,15 @@ export class ProductLandingPageComponent implements OnInit {
     })
   }
 
+  getCategories(): void {
+    this.categoryService.getCategories().subscribe((response): any => {
+      this.categoriesList = response;
+    })
+
+  }
+
   ngOnInit(): void {
+    this.getCategories();
     this.getProducts();
   }
 

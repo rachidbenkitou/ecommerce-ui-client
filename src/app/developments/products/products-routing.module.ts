@@ -4,11 +4,11 @@ import {ProductLandingPageComponent} from "./components/product-landing-page/pro
 export const ProductsRoutes: Routes = [
   {
     path: '',
-    redirectTo: 'landingPage',
+    redirectTo: 'homePage',
     pathMatch: 'full'
   },
   {
-    path: 'landingPage',
+    path: 'homePage',
     component: ProductLandingPageComponent,
   },
 

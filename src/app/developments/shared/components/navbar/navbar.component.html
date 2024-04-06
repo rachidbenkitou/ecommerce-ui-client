@@ -1,5 +1,5 @@
 <!--=============== HEADER ===============-->
-<header class="header">
+<header class="header nav-sticky">
   <div class="header__top">
     <div class="header__container container">
       <div class="header__contact">
@@ -19,7 +19,7 @@
   </div>
 
   <nav class="nav container">
-    <a href="../../../../../../index.html" class="nav__logo">
+    <a (click)="gotToHome()" class="nav__logo">
       <img src="../../../../../../assets/img/logo.svg" alt="" class="nav__logo-img" />
     </a>
 
@@ -75,14 +75,11 @@
         <span class="count">66</span>
       </a>
 
-      <a href="cart.html" class="header__action-btn">
+      <a routerLink="cart" class="header__action-btn">
         <img src="../../../../../../assets/img/icon-cart.svg" alt="" />
         <span class="count">{{productCount}}</span>
       </a>
 
-      <div class="header__action-btn nav__toggle" id="nav-toggle">
-        <img src="../../../../../../assets/img/menu-burger.svg" alt="">
-      </div>
     </div>
   </nav>
 </header>

@@ -7,6 +7,8 @@ import {LayoutComponent} from "./developments/layout/components/layout/layout.co
 import {HttpClientModule} from "@angular/common/http";
 import {NavbarComponent} from "./developments/shared/components/navbar/navbar.component";
 import {FooterComponent} from "./developments/shared/components/footer/footer.component";
+import {provideToastr, ToastrModule} from "ngx-toastr";
+import {BrowserAnimationsModule, provideAnimations} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -18,11 +20,16 @@ import {FooterComponent} from "./developments/shared/components/footer/footer.co
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
+
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideAnimations(), // required animations providers
+    provideToastr(), // Toastr providers
   ],
   exports: [],
   bootstrap: [AppComponent]

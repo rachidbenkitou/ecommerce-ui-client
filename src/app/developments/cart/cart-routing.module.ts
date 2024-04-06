@@ -1,4 +1,5 @@
 import {Routes} from "@angular/router";
+import {CartComponent} from "./components/cart/cart.component";
 
 
 export const CartRoutes: Routes = [
@@ -7,4 +8,9 @@ export const CartRoutes: Routes = [
   //   component: CheckoutComponent,
   //   children: [],
   // },
+
+  {
+    path: '',
+    component: CartComponent,
+  },
 ];
