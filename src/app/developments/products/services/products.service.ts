@@ -56,7 +56,17 @@ export class ProductsService {
   productCount$ = this.productCountSubject.asObservable();
 
   incrementProductCount() {
-    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    this.productCountSubject.next(cart.length);
+    if (typeof localStorage !== 'undefined') {
+      try {
+        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        this.productCountSubject.next(cart.length);
+      } catch (error) {
+        console.error('Error while parsing cart data:', error);
+      }
+    } else {
+      console.warn('localStorage is not available.'); // Log a warning if localStorage is not available
+    }
   }
+
+
 }

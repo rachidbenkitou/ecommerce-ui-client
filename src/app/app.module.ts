@@ -25,6 +25,7 @@ import {BrowserAnimationsModule, provideAnimations} from "@angular/platform-brow
     HttpClientModule,
     ToastrModule.forRoot(),
 
+
   ],
   providers: [
     provideClientHydration(),
@@ -36,3 +37,4 @@ import {BrowserAnimationsModule, provideAnimations} from "@angular/platform-brow
 })
 export class AppModule {
 }
+

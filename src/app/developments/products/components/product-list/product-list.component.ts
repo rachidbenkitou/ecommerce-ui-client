@@ -28,19 +28,15 @@ export class ProductListComponent implements OnInit {
     } else {
       cart.push(product);
       localStorage.setItem('cart', JSON.stringify(cart));
-      this.incrementProductCount(); // Call this to update the count
+      this.productService.incrementProductCount()
+      ; // Call this to update the count
       this.toastr.success('Product added to cart!', 'Success!');
 
     }
   }
 
-  incrementProductCount() {
-    this.productService.incrementProductCount()
-  }
 
   ngOnInit(): void {
-    this.incrementProductCount();
-
   }
 
 
