@@ -1,11 +1,9 @@
 /*=============== GOOGLE FONTS ===============*/
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Spartan:wght@400;500;600;700&display=swap');
 
-@import "primeng/resources/themes/lara-light-blue/theme.css";
-@import "primeng/resources/primeng.css";
-
 // regular style toast
 @import 'ngx-toastr/toastr';
+
 
 /*=============== VARIABLES CSS ===============*/
 :root {
@@ -1940,3 +1938,6 @@ table {
   align-items: center;
   justify-content: center;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

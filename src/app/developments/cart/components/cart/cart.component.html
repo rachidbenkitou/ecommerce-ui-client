@@ -189,11 +189,18 @@
 
 
 <!--</main>-->
-<button (click)="placeOrder()">Click Me</button>
+<!--<button (click)="placeOrder()">Click Me</button>-->
 <main class="main">
-  <app-breadcrumb></app-breadcrumb>
+<!--  <app-breadcrumb></app-breadcrumb>-->
   <section class="cart section--lg container">
-    <div class="table__container">
+
+    <div class="alert alert-success text-center" role="alert" *ngIf="cartSize===0">
+      <strong>The Cart is Empty!</strong>
+    </div>
+
+
+
+    <div class="table__container" *ngIf="cartSize!==0">
       <table class="table">
         <tr>
           <th>Image</th>

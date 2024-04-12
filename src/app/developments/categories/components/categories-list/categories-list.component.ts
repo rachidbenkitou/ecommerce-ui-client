@@ -13,10 +13,46 @@ export class CategoriesListComponent implements OnInit {
   }
 
 
-  handleCategoryClick(id: number): void{
+  handleCategoryClick(id: number): void {
     alert(id)
   }
-  ngOnInit(): void {
+
+  products: any[] | undefined;
+
+  responsiveOptions: any[] | undefined;
+
+
+  ngOnInit() {
+    this.responsiveOptions = [
+      {
+        breakpoint: '1199px',
+        numVisible: 1,
+        numScroll: 1
+      },
+      {
+        breakpoint: '991px',
+        numVisible: 2,
+        numScroll: 1
+      },
+      {
+        breakpoint: '767px',
+        numVisible: 1,
+        numScroll: 1
+      }
+    ];
+  }
+
+  getSeverity(status: string) {
+    switch (status) {
+      case 'INSTOCK':
+        return 'success';
+      case 'LOWSTOCK':
+        return 'warning';
+      case 'OUTOFSTOCK':
+        return 'danger';
+      default:
+        return 'OUTOFSTOCK'
+    }
   }
 
 }

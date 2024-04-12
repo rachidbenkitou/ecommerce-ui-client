@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CartService} from "../../services/cart.service";
 import {ProductsService} from "../../../products/services/products.service";
 
@@ -7,12 +7,19 @@ import {ProductsService} from "../../../products/services/products.service";
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
   cart: any;
+  cartSize: number = 0;
 
   constructor(private cartService: CartService, private productService: ProductsService) {
     // Retrieve the array from local storage
     this.cart = JSON.parse(localStorage.getItem('cart') || '[]');
+
+    this.cartSize = this.cart.length;
+  }
+
+  ngOnInit(): void {
+
   }
 
   totalPrice: number = 0;
