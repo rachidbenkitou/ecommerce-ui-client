@@ -12,5 +12,8 @@ export const CartRoutes: Routes = [
   {
     path: '',
     component: CartComponent,
+    // canActivate: [AuthGuard],
+    // data: {roles: ['client_admin']},
+
   },
 ];

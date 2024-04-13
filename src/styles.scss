@@ -4,7 +4,6 @@
 // regular style toast
 @import 'ngx-toastr/toastr';
 
-
 /*=============== VARIABLES CSS ===============*/
 :root {
   --header-height: 4rem;
@@ -1938,6 +1937,3 @@ table {
   align-items: center;
   justify-content: center;
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

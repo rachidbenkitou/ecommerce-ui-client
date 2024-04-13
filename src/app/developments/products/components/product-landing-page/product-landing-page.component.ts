@@ -44,7 +44,7 @@ export class ProductLandingPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCategories();
+    // this.getCategories();
     this.getProducts();
   }
 

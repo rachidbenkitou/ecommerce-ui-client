@@ -10,8 +10,12 @@ import {ProductsService} from "../../../products/services/products.service";
 export class CartComponent implements OnInit {
   cart: any;
   cartSize: number = 0;
+  isUserLoggedIn: boolean = false;
 
-  constructor(private cartService: CartService, private productService: ProductsService) {
+  constructor(private cartService: CartService,
+              private productService: ProductsService,
+  ) {
+
     // Retrieve the array from local storage
     this.cart = JSON.parse(localStorage.getItem('cart') || '[]');
 

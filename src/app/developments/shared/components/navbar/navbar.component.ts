@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private productService: ProductsService,
-    private router: Router
+    private router: Router,
   ) {
     this.productService.productCount$.subscribe(count => {
       this.productCount = count;
@@ -29,5 +29,10 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     //this.productService.incrementProductCount();
+  }
+
+  loginRegisterPage() {
+    this.router.navigate(['/loginRegister']);
+
   }
 }
