@@ -51,6 +51,17 @@ export class CartComponent implements OnInit {
 
   }
 
+  incrementQuantity(product: any): void {
+    product.quantity++;
+    this.updateQuantity(product); // Update the total price
+  }
+
+  decrementQuantity(product: any): void {
+    if (product.quantity > 1) {
+      product.quantity--;
+      this.updateQuantity(product); // Update the total price
+    }
+  }
 
   updateQuantity(product: any) {
     // Perform any validation or processing here if needed
@@ -121,6 +132,12 @@ export class CartComponent implements OnInit {
 
       // Recalculate the total price
       this.calculateTotalOrderClientPrice();
+      this.productService.incrementProductCount()
+
+    }
+
+    if (this.cart.length == 0) {
+      this.cartSize = 0;
     }
   }
 

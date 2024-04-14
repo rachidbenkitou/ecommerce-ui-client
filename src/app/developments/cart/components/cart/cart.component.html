@@ -43,9 +43,21 @@
           <p class="table__description">{{ product.description }}</p>
         </td>
         <td><span class="table__price"> {{ product.price }} MAD</span></td>
-        <!--          <td><input type="number" value="{{ product.quantity }}" class="quantity"/></td>-->
-        <td><input type="number" [(ngModel)]="product.quantity" (change)="updateQuantity(product)" class="quantity"
-                   min="1"/></td>
+
+
+<!--        &lt;!&ndash;          <td><input type="number" value="{{ product.quantity }}" class="quantity"/></td>&ndash;&gt;-->
+<!--        <td><input type="number" [(ngModel)]="product.quantity" (change)="updateQuantity(product)" class="quantity"-->
+<!--                   min="1"/></td>-->
+
+        <td>
+          <div class="quantity-control">
+            <strong><i class="fa-solid fa-minus pointerCursor"  (click)="decrementQuantity(product)"></i></strong>
+            <span class="quantity-control__value">{{ product.quantity }}</span>
+            <strong><i class="fa-solid fa-plus pointerCursor" (click)="incrementQuantity(product)"></i></strong>
+          </div>
+        </td>
+
+
         <td><span class="table__subtotal"> {{ product.price * product?.quantity }} MAD</span></td>
         <td><i class="fi fi-rs-trash table__trash" (click)="deleteItem(product.id)" style="cursor: pointer"></i></td>
       </tr>
