@@ -15,8 +15,8 @@ export class LoginRegisterComponent {
     private formBuilder: FormBuilder
   ) {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      username: ['admin', Validators.required],
+      password: ['admin', Validators.required]
     });
   }
 
@@ -25,7 +25,7 @@ export class LoginRegisterComponent {
 
     this.authService.login(username, password).subscribe(response => {
       console.log('Logged in successfully!', response);
-      this.loginForm.reset();
+      //this.loginForm.reset();
     })
   }
 

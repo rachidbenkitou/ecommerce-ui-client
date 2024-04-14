@@ -1,32 +1,51 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {catchError, map, Observable} from 'rxjs';
-import {environment} from "../../../environements/environement";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { environment } from "../../../environements/environement";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = `${environment.appUrl}users/login`;
+  private apiUrl = `${environment.appUrl}users`;
+  private accessTokenKey = 'bokeito-ecommerce-accessToken';
+  private refreshTokenKey = 'bokeito-ecommerce-refreshToken';
 
   constructor(private http: HttpClient) {
   }
 
   login(username: string, password: string): Observable<any> {
-    let body = new URLSearchParams();
-    body.set('username', username);
-    body.set('password', password);
-    body.set('grant_type', `${environment.grant_type}`);
-    body.set('client_id', `${environment.client_id}`);
+    // Check if both access token and refresh token are present in local storage
+    const hasAccessToken = !!this.getAccessToken();
+    const hasRefreshToken = !!this.getRefreshToken();
 
-    let options = {
-      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    if (hasAccessToken && hasRefreshToken) {
+      // If both tokens are present, initiate logout first
+      return this.logout().pipe(
+        switchMap(() => this.doLogin(username, password))
+      );
+    } else {
+      // If any token is missing or both are missing, proceed with normal login
+      return this.doLogin(username, password);
+    }
+  }
+
+  private doLogin(username: string, password: string): Observable<any> {
+    const body = this.buildFormUrlEncodedBody({
+      username,
+      password,
+      grant_type: environment.grant_type,
+      client_id: environment.client_id
+    });
+
+    const options = {
+      headers: this.buildHeaders()
     };
 
-    return this.http.post<any>(this.apiUrl, body.toString(), options).pipe(
+    return this.http.post<any>(`${this.apiUrl}/login`, body, options).pipe(
       map(response => {
-        localStorage.setItem('bokeito-ecommerce-accessToken', response.accessToken);
-        localStorage.setItem('bokeito-ecommerce-refreshToken', response?.refreshToken);
+        this.storeTokens(response.accessToken, response.refreshToken);
         return response;
       }),
       catchError(error => {
@@ -36,38 +55,60 @@ export class AuthService {
     );
   }
 
-  // login(username: string, password: string): Observable<any> {
-  //   // const body = `client_id=${encodeURIComponent(environment.client_id)}&grant_type=${encodeURIComponent(environment.grant_type)}&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
-  //   // const headers = new HttpHeaders({
-  //   //   'Content-Type': 'application/x-www-form-urlencoded'
-  //   // });
-  //   //
-  //   // return this.http.post<any>(this.apiUrl, body, { headers }).pipe(
-  //   //   map(response => {
-  //   //     // Store tokens in local storage
-  //   //     localStorage.setItem('bokeito-ecommerce-accessToken', response?.accessToken);
-  //   //     localStorage.setItem('bokeito-ecommerce-refreshToken', response?.refreshToken);
-  //   //     return response;
-  //   //   }),
-  //   //   catchError(error => {
-  //   //     console.error('Error logging in:', error);
-  //   //     return throwError(error);
-  //   //   })
-  //   // );
-  //
-  //   let body = new URLSearchParams();
-  //   body.set('user', username);
-  //   body.set('password', password);
-  //
-  //   let options = {
-  //     headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-  //   };
-  //
-  //   return this.http
-  //     .post(`${this.apiUrl}`, body.toString(), options)
-  //     .subscribe(response => {
-  //       localStorage.setItem('bokeito-ecommerce-accessToken', response.accessToken);
-  //       localStorage.setItem('bokeito-ecommerce-refreshToken', response?.refreshToken);
-  //     });
-  // }
+  logout(): Observable<any> {
+    const refreshToken = this.getRefreshToken();
+
+    if (!refreshToken) {
+      console.warn('No refresh token found. Skipping logout.');
+      return new Observable();
+    }
+
+    const body = this.buildFormUrlEncodedBody({
+      refresh_token: refreshToken,
+      client_id: environment.client_id
+    });
+
+    const options = {
+      headers: this.buildHeaders()
+    };
+
+    return this.http.post<any>(`${this.apiUrl}/logout`, body, options).pipe(
+      map(() => {
+        this.clearTokens();
+        return true;
+      }),
+      catchError(error => {
+        console.error('Error logging out:', error);
+        throw error;
+      })
+    );
+  }
+
+  private buildFormUrlEncodedBody(data: any): string {
+    const params = new URLSearchParams();
+    Object.keys(data).forEach(key => params.set(key, data[key]));
+    return params.toString();
+  }
+
+  private buildHeaders(): HttpHeaders {
+    return new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+  }
+
+  private storeTokens(accessToken: string, refreshToken: string): void {
+    localStorage.setItem(this.accessTokenKey, accessToken);
+    localStorage.setItem(this.refreshTokenKey, refreshToken);
+  }
+
+  private clearTokens(): void {
+    localStorage.removeItem(this.accessTokenKey);
+    localStorage.removeItem(this.refreshTokenKey);
+  }
+
+  getAccessToken(): string {
+    return localStorage.getItem(this.accessTokenKey) || '';
+  }
+
+  getRefreshToken(): string {
+    return localStorage.getItem(this.refreshTokenKey) || '';
+  }
 }

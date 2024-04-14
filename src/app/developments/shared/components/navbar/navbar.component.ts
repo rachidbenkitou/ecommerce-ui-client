@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductsService} from "../../../products/services/products.service";
 import {Router} from '@angular/router';
+import {AuthService} from "../../../security/auth.service";
 
 @Component({
   selector: 'app-navbar',
@@ -12,6 +13,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private productService: ProductsService,
+    private authService: AuthService,
     private router: Router,
   ) {
     this.productService.productCount$.subscribe(count => {
@@ -34,5 +36,12 @@ export class NavbarComponent implements OnInit {
   loginRegisterPage() {
     this.router.navigate(['/loginRegister']);
 
+  }
+
+  logout() {
+    this.authService.logout().subscribe(response => {
+      console.log('Logged in successfully!', response);
+      //this.loginForm.reset();
+    })
   }
 }
