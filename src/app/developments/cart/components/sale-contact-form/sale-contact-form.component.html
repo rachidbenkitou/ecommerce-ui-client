@@ -1,0 +1,39 @@
+<div id="formContact" class="container" style="width: 70%;" *ngIf="!isUserLoggedIn && cartSize !== 0">
+  <div class="login">
+    <h3 class="section__title">Vos informations personnelles</h3>
+
+    <form [formGroup]="saleForm" (ngSubmit)="onSubmit()" class="form grid">
+      <input
+        type="text"
+        placeholder="Full Name"
+        class="form__input"
+        formControlName="fullName"
+      />
+
+      <input
+        type="tel"
+        placeholder="Phone Number"
+        class="form__input"
+        formControlName="phone"
+      />
+
+      <input
+        type="email"
+        placeholder="Email Address"
+        class="form__input"
+        formControlName="email"
+      />
+
+      <input
+        type="text"
+        placeholder="Address"
+        class="form__input"
+        formControlName="address"
+      />
+
+      <div class="form__btn">
+        <button type="submit" class="btn">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
