@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
-import { environment } from "../../../environements/environement";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {catchError, map, switchMap} from 'rxjs/operators';
+import {environment} from "../../../environements/environement";
 
 @Injectable({
   providedIn: 'root'
@@ -110,5 +110,9 @@ export class AuthService {
 
   getRefreshToken(): string {
     return localStorage.getItem(this.refreshTokenKey) || '';
+  }
+
+  isLogin(): boolean {
+    return this.getAccessToken() !== '' && this.getRefreshToken() !== '';
   }
 }
