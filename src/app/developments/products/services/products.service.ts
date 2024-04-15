@@ -55,6 +55,8 @@ export class ProductsService {
   private productCountSubject = new BehaviorSubject<number>(0);
   productCount$ = this.productCountSubject.asObservable();
 
+  private wishlistProductCountSubject = new BehaviorSubject<number>(0);
+  wishlistProductCount$ = this.wishlistProductCountSubject.asObservable();
   incrementProductCount() {
     if (typeof localStorage !== 'undefined') {
       try {
@@ -62,6 +64,19 @@ export class ProductsService {
         this.productCountSubject.next(cart.length);
       } catch (error) {
         console.error('Error while parsing cart data:', error);
+      }
+    } else {
+      console.warn('localStorage is not available.'); // Log a warning if localStorage is not available
+    }
+  }
+
+  incrementWishlistProductCount() {
+    if (typeof localStorage !== 'undefined') {
+      try {
+        const wishlist = JSON.parse(localStorage.getItem('bokeito-ecommerce-wishlist') || '[]');
+        this.wishlistProductCountSubject.next(wishlist.length);
+      } catch (error) {
+        console.error('Error while parsing wishlist data:', error);
       }
     } else {
       console.warn('localStorage is not available.'); // Log a warning if localStorage is not available

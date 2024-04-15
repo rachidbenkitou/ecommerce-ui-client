@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ProductsService} from "../../services/products.service";
 import {ToastrService} from "ngx-toastr";
+import {CartService} from "../../../cart/services/cart.service";
 
 
 @Component({
@@ -14,25 +15,14 @@ export class ProductListComponent implements OnInit {
   constructor(
     private productService: ProductsService,
     private toastr: ToastrService,
+    private cartService: CartService
   ) {
 
   }
 
   addToCart(product: any) {
-    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
 
-    if (cart.some((item: any) => item.id === product.id)) {
-      // alert('Product already exists in cart!');
-      this.toastr.error('Product already exists in cart!', 'Failed!');
-
-    } else {
-      cart.push(product);
-      localStorage.setItem('cart', JSON.stringify(cart));
-      this.productService.incrementProductCount()
-      ; // Call this to update the count
-      this.toastr.success('Product added to cart!', 'Success!');
-
-    }
+    this.cartService.addToCart(product)
   }
 
 
@@ -40,4 +30,20 @@ export class ProductListComponent implements OnInit {
   }
 
 
+  addToWishlist(product: any) {
+    let wishlist = JSON.parse(localStorage.getItem('bokeito-ecommerce-wishlist') || '[]');
+
+    if (wishlist.some((item: any) => item.id === product.id)) {
+      // alert('Product already exists in cart!');
+      this.toastr.error('Product already exists in wishlist!', 'Failed!');
+
+    } else {
+      wishlist.push(product);
+      localStorage.setItem('bokeito-ecommerce-wishlist', JSON.stringify(wishlist));
+      this.productService.incrementWishlistProductCount()
+      ; // Call this to update the count
+      this.toastr.success('Product added to wishlist!', 'Success!');
+
+    }
+  }
 }

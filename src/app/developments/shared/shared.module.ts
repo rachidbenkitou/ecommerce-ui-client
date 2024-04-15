@@ -9,13 +9,13 @@ import { SlideComponent } from './components/landing-page/slide/slide.component'
     BreadcrumbComponent,
     NotFoundComponent,
     DealsComponent,
-    SlideComponent
+    SlideComponent,
   ],
-  exports: [
-    BreadcrumbComponent,
-    DealsComponent,
-    SlideComponent
-  ],
+    exports: [
+        BreadcrumbComponent,
+        DealsComponent,
+        SlideComponent,
+    ],
   imports: []
 })
 

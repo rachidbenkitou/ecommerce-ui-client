@@ -1,9 +1,108 @@
-<!--=============== MAIN ===============-->
+<!--&lt;!&ndash;=============== MAIN ===============&ndash;&gt;-->
+<!--<main class="main">-->
+<!--  &lt;!&ndash;=============== WISHLIST ===============&ndash;&gt;-->
+<!--  <section class="wishlist section&#45;&#45;lg container">-->
+<!--    <div class="table__container">-->
+<!--      <table class="table">-->
+<!--        <tr>-->
+<!--          <th>Image</th>-->
+<!--          <th>Name</th>-->
+<!--          <th>Price</th>-->
+<!--          <th>Stock Status</th>-->
+<!--          <th>Action</th>-->
+<!--          <th>Remove</th>-->
+<!--        </tr>-->
+
+<!--        <tr>-->
+<!--          <td>-->
+<!--            <img-->
+<!--              src="../../../../assets/img/product-1-2.jpg"-->
+<!--              alt=""-->
+<!--              class="table__img"-->
+<!--            />-->
+<!--          </td>-->
+
+<!--          <td>-->
+<!--            <h3 class="table__title">-->
+<!--              J.Crew Mercantile Women's Short-Sleeve-->
+<!--            </h3>-->
+<!--            <p class="table__description">-->
+<!--              Maboriosam in a tonto nesciung eget distingy magndapibus.-->
+<!--            </p>-->
+<!--          </td>-->
+
+<!--          <td><span class="table__price">$110</span></td>-->
+
+<!--          <td><span class="table__stock">In Stock</span></td>-->
+
+<!--          <td><a href="" class="btn btn btn&#45;&#45;sm">Add to Cart</a></td>-->
+
+<!--          <td><i class="fi fi-rs-trash table__trash"></i></td>-->
+<!--        </tr>-->
+
+<!--        <tr>-->
+<!--          <td>-->
+<!--            <img-->
+<!--              src="../../../../assets/img/product-7-1.jpg"-->
+<!--              alt=""-->
+<!--              class="table__img"-->
+<!--            />-->
+<!--          </td>-->
+
+<!--          <td>-->
+<!--            <h3 class="table__title">Amazon Essentials Women's Tank</h3>-->
+<!--            <p class="table__description">-->
+<!--              Maboriosam in a tonto nesciung eget distingy magndapibus.-->
+<!--            </p>-->
+<!--          </td>-->
+
+<!--          <td><span class="table__price">$110</span></td>-->
+
+<!--          <td><span class="table__stock">In Stock</span></td>-->
+
+<!--          <td><a href="" class="btn btn btn&#45;&#45;sm">Add to Cart</a></td>-->
+
+<!--          <td><i class="fi fi-rs-trash table__trash"></i></td>-->
+<!--        </tr>-->
+
+<!--        <tr>-->
+<!--          <td>-->
+<!--            <img-->
+<!--              src="../../../../assets/img/product-2-1.jpg"-->
+<!--              alt=""-->
+<!--              class="table__img"-->
+<!--            />-->
+<!--          </td>-->
+
+<!--          <td>-->
+<!--            <h3 class="table__title">-->
+<!--              Amazon Brand - Daily Ritual Women's Jersey-->
+<!--            </h3>-->
+<!--            <p class="table__description">-->
+<!--              Maboriosam in a tonto nesciung eget distingy magndapibus.-->
+<!--            </p>-->
+<!--          </td>-->
+
+<!--          <td><span class="table__price">$110</span></td>-->
+
+<!--          <td><span class="table__stock">In Stock</span></td>-->
+
+<!--          <td><a href="" class="btn btn btn&#45;&#45;sm">Add to Cart</a></td>-->
+
+<!--          <td><i class="fi fi-rs-trash table__trash"></i></td>-->
+<!--        </tr>-->
+<!--      </table>-->
+<!--    </div>-->
+<!--  </section>-->
+<!--</main>-->
+
 <main class="main">
-  <app-breadcrumb></app-breadcrumb>
-  <!--=============== WISHLIST ===============-->
   <section class="wishlist section--lg container">
-    <div class="table__container">
+    <div class="alert alert-success text-center" role="alert" *ngIf="wishlistSize===0"
+         style="border-radius: 20px; background-color: #d0e0d0; text-align: center; padding: 3rem">
+      <strong>The Wishlist is Empty!</strong>
+    </div>
+    <div class="table__container" *ngIf="wishlistSize!==0">
       <table class="table">
         <tr>
           <th>Image</th>
@@ -13,113 +112,24 @@
           <th>Action</th>
           <th>Remove</th>
         </tr>
-
-        <tr>
+        <tr *ngFor="let item of wishlist">
           <td>
-            <img
-              src="../../../../assets/img/product-1-2.jpg"
-              alt=""
-              class="table__img"
-            />
+            <img [src]="'assets/img/'+item.productImagePath" alt="" class="table__img"/>
           </td>
-
           <td>
-            <h3 class="table__title">
-              J.Crew Mercantile Women's Short-Sleeve
-            </h3>
-            <p class="table__description">
-              Maboriosam in a tonto nesciung eget distingy magndapibus.
-            </p>
+            <h3 class="table__title">{{ item.name }}</h3>
+            <p class="table__description">{{ item.description }}</p>
           </td>
-
-          <td><span class="table__price">$110</span></td>
-
-          <td><span class="table__stock">In Stock</span></td>
-
-          <td><a href="" class="btn btn btn--sm">Add to Cart</a></td>
-
-          <td><i class="fi fi-rs-trash table__trash"></i></td>
-        </tr>
-
-        <tr>
+          <td><span class="table__price">$ {{ item.price }}</span></td>
           <td>
-            <img
-              src="../../../../assets/img/product-7-1.jpg"
-              alt=""
-              class="table__img"
-            />
+            <strong class="table__stock">
+              {{ item.quantity > 0 ? 'In Stock (' + item.quantity + ')' : 'Out of Stock' }}
+            </strong>
           </td>
-
-          <td>
-            <h3 class="table__title">Amazon Essentials Women's Tank</h3>
-            <p class="table__description">
-              Maboriosam in a tonto nesciung eget distingy magndapibus.
-            </p>
-          </td>
-
-          <td><span class="table__price">$110</span></td>
-
-          <td><span class="table__stock">In Stock</span></td>
-
-          <td><a href="" class="btn btn btn--sm">Add to Cart</a></td>
-
-          <td><i class="fi fi-rs-trash table__trash"></i></td>
-        </tr>
-
-        <tr>
-          <td>
-            <img
-              src="../../../../assets/img/product-2-1.jpg"
-              alt=""
-              class="table__img"
-            />
-          </td>
-
-          <td>
-            <h3 class="table__title">
-              Amazon Brand - Daily Ritual Women's Jersey
-            </h3>
-            <p class="table__description">
-              Maboriosam in a tonto nesciung eget distingy magndapibus.
-            </p>
-          </td>
-
-          <td><span class="table__price">$110</span></td>
-
-          <td><span class="table__stock">In Stock</span></td>
-
-          <td><a href="" class="btn btn btn--sm">Add to Cart</a></td>
-
-          <td><i class="fi fi-rs-trash table__trash"></i></td>
+          <td><a (click)="addToCart(item)" class="btn btn btn--sm cursorPointer ">Add to Cart</a></td>
+          <td><i class="fi fi-rs-trash table__trash cursorPointer " (click)="removeFromWishlist(item.id)"></i></td>
         </tr>
       </table>
-    </div>
-  </section>
-
-  <!--=============== NEWSLETTER ===============-->
-  <section class="newsletter section">
-    <div class="newsletter__container container grid">
-      <h3 class="newsletter__title flex">
-        <img
-          src="../../../../assets/img/icon-email.svg"
-          alt=""
-          class="newsletter__icon"
-        />
-        Sign up to Newsletter
-      </h3>
-
-      <p class="newsletter__description">
-        ...and receive $25 coupon for first shopping.
-      </p>
-
-      <form action="" class="newsletter__form">
-        <input
-          type="text"
-          placeholder="Enter your email"
-          class="newsletter__input"
-        />
-        <button type="submit" class="newsletter__btn">Subscribe</button>
-      </form>
     </div>
   </section>
 </main>

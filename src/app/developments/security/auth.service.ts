@@ -15,6 +15,14 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
+  LoginWithoutBackend() {
+    this.storeTokens(this.accessTokenKey, this.refreshTokenKey);
+  }
+
+  LogoutWithoutBackend() {
+    this.clearTokens();
+  }
+
   login(username: string, password: string): Observable<any> {
     // Check if both access token and refresh token are present in local storage
     const hasAccessToken = !!this.getAccessToken();
@@ -112,7 +120,7 @@ export class AuthService {
     return localStorage.getItem(this.refreshTokenKey) || '';
   }
 
-  isLogin(): boolean {
+  isLoggedIn(): boolean {
     return this.getAccessToken() !== '' && this.getRefreshToken() !== '';
   }
 }

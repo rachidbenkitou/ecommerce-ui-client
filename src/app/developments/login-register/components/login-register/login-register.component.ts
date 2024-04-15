@@ -23,10 +23,11 @@ export class LoginRegisterComponent {
   login(): void {
     const {username, password} = this.loginForm.value;
 
-    this.authService.login(username, password).subscribe(response => {
-      console.log('Logged in successfully!', response);
-      //this.loginForm.reset();
-    })
+    this.authService.LoginWithoutBackend();
+    // this.authService.login(username, password).subscribe(response => {
+    //   console.log('Logged in successfully!', response);
+    //   //this.loginForm.reset();
+    // })
   }
 
 }

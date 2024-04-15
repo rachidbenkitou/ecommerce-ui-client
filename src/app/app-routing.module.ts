@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {NotFoundComponent} from "./developments/shared/components/not-found/not-found.component";
 import {LayoutComponent} from "./developments/layout/components/layout/layout.component";
-import {LoginRegisterModule} from "./developments/login-register/login-register.module";
 
 
 const routes: Routes = [
@@ -32,6 +31,11 @@ const routes: Routes = [
         path: 'loginRegister',
         // canActivate: [AuthGuard],
         loadChildren: () => import('./developments/login-register/login-register.module').then(m => m.LoginRegisterModule)
+      },
+      {
+        path: 'wishlist',
+        // canActivate: [AuthGuard],
+        loadChildren: () => import('./developments/wishlist/wishlist.module').then(m => m.WishlistModule)
       },
     ]
   },

@@ -12,7 +12,7 @@
         Super Value Deals - Save more with coupons
       </p>
 
-      <a  class="header__top-action" (click)="loginRegisterPage()">
+      <a class="header__top-action" (click)="loginRegisterPage()">
         Log In / Sign Up
       </a>
     </div>
@@ -20,23 +20,23 @@
 
   <nav class="nav container">
     <a (click)="gotToHome()" class="nav__logo">
-      <img src="../../../../../../assets/img/logo.svg" alt="" class="nav__logo-img" />
+      <img src="../../../../../../assets/img/logo.svg" alt="" class="nav__logo-img"/>
     </a>
 
-    <div class="nav__menu" id="nav-menu">
+    <div class="nav__menu" id="nav-menu" #navMenu>
       <div class="nav__menu-top">
         <a href="../../../../../../index.html" class="nav__menu-logo">
           <img src="../../../../../../assets/img/logo.svg" alt="">
         </a>
 
-        <div class="nav__close" id="nav-close">
+        <div class="nav__close" id="nav-close" #navClose>
           <i class="fi fi-rs-cross-small"></i>
         </div>
       </div>
 
       <ul class="nav__list">
         <li class="nav__item">
-          <a href="../../../../../../index.html" class="nav__link active-link">Home</a>
+          <a (click)="TestAlert()" class="nav__link active-link">Home</a>
         </li>
 
         <li class="nav__item">
@@ -52,7 +52,7 @@
         </li>
 
         <li class="nav__item">
-          <a (click)="logout()" class="nav__link">Login</a>
+          <a (click)="logout()" class="nav__link">Logout</a>
         </li>
       </ul>
 
@@ -64,21 +64,25 @@
         />
 
         <button class="search__btn">
-          <img src="../../../../../../assets/img/search.png" alt="" />
+          <img src="../../../../../../assets/img/search.png" alt=""/>
         </button>
       </div>
     </div>
 
     <div class="header__user-actions">
-      <a href="wishlist.html" class="header__action-btn">
-        <img src="../../../../../../assets/img/icon-heart.svg" alt="" />
-        <span class="count">66</span>
+      <a routerLink="wishlist" class="header__action-btn">
+        <img src="../../../../../../assets/img/icon-heart.svg" alt=""/>
+        <span class="count">{{wishlistProductCount}}</span>
       </a>
 
       <a routerLink="cart" class="header__action-btn">
-        <img src="../../../../../../assets/img/icon-cart.svg" alt="" />
+        <img src="../../../../../../assets/img/icon-cart.svg" alt=""/>
         <span class="count">{{productCount}}</span>
       </a>
+
+      <div class="header__action-btn nav__toggle" id="nav-toggle" #navToggle>
+        <img src="assets/img/menu-burger.svg" alt="">
+      </div>
 
     </div>
   </nav>
