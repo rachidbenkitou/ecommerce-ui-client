@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ProductsService} from "../../services/products.service";
 import {ToastrService} from "ngx-toastr";
 import {CartService} from "../../../cart/services/cart.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -15,7 +16,8 @@ export class ProductListComponent implements OnInit {
   constructor(
     private productService: ProductsService,
     private toastr: ToastrService,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router
   ) {
 
   }
@@ -45,5 +47,9 @@ export class ProductListComponent implements OnInit {
       this.toastr.success('Product added to wishlist!', 'Success!');
 
     }
+  }
+
+  GoToProductPage() {
+    this.router.navigate(['products/allProducts'])
   }
 }
