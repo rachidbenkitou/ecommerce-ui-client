@@ -1,16 +1,13 @@
 <section class="home section--lg">
   <div class="home__container container grid">
+    <button class="nav-button" (click)="prevSlide()">Previous</button>
     <div class="home__content">
-      <span class="home__subtitle">Hot promotions</span>
-      <h1 class="home__title">
-        Fashion Trending <span>Great Collection</span>
-      </h1>
-      <p class="home__description">
-        Save more with coupons & up to 20% off
-      </p>
-      <a href="shop.html" class="btn">Shop Now</a>
+      <span class="home__subtitle">{{ currentSlide.subtitle }}</span>
+      <h1 class="home__title">{{ currentSlide.title }}</h1>
+      <p class="home__description">{{ currentSlide.description }}</p>
+      <a href="{{ currentSlide.buttonLink }}" class="btn">{{ currentSlide.buttonText }}</a>
     </div>
-
-    <img src="../../../../../../assets/img/home-img.png" alt="" class="home__img"/>
+    <img src="../../../../../../assets/img/home-img.png" alt="" class="home__img" />
+    <button class="nav-button" (click)="nextSlide()">Next</button>
   </div>
 </section>
