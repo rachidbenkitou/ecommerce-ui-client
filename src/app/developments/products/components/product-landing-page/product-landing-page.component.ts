@@ -3,7 +3,6 @@ import {CategoriesService} from "../../../categories/services/categories.service
 import {PackagesService} from "../../../packages/services/packages.service";
 import {ProductsService} from "../../services/products.service";
 import {Router} from "@angular/router";
-import {environment} from "../../../../../environements/environement";
 
 @Component({
   selector: 'app-product-landing-page',
@@ -47,9 +46,8 @@ export class ProductLandingPageComponent implements OnInit {
 
   }
 
-  goToProductsPage() {
-    this.router.navigate(['/products/allProducts']);
-    // window.location.href = `${environment.angularUrl}/products/allProducts`;
+  GoToProductPage() {
+    this.router.navigate(['products/allProducts'])
   }
 
   ngOnInit(): void {

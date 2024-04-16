@@ -1,6 +1,10 @@
 <!--=============== PRODUCTS ===============-->
 <section class="products section container">
-  <p class="total__products">We found <span>688</span> items for you!</p>
+  <!--<p class="total__products">We found <span>688</span> items for you!</p>-->
+
+  <div class="tab__btns center-element">
+    <h3 class="section__title"><span>{{this.GreenTitle}}</span> {{this.BlackTitle}}</h3>
+  </div>
 
   <div class="tab__items">
     <div class="tab__item active-tab">
@@ -9,7 +13,8 @@
 
         <div class="product__item" *ngFor="let product of products">
           <div class="product__banner">
-            <a href="details.html" class="product__images">
+            <a [routerLink]="'/products/singleProduct/'+product.id" [state]="{ product: product }"
+               class="product__images">
               <img
                 [src]="'assets/img/'+product?.productImagePath"
                 [alt]="product?.productImagePath"
@@ -18,7 +23,7 @@
             </a>
 
             <div class="product__actions">
-              <a routerLink="/products/singleProduct" class="action__btn" aria-label="Quick View">
+              <a [routerLink]="'/products/singleProduct/'+product.id" [state]="{ product: product }" class="action__btn" aria-label="Quick View">
                 <i class="fi fi-rs-eye"></i>
               </a>
 
@@ -70,7 +75,7 @@
 
   </div>
 
-  <ul class="pagination">
+  <ul class="pagination" *ngIf="isPaginationShown">
     <li><a href="#" class="pagination__link active">01</a></li>
     <li><a href="#" class="pagination__link">02</a></li>
     <li><a href="#" class="pagination__link">03</a></li>
@@ -83,8 +88,9 @@
     </li>
   </ul>
 
-  <div class="tab__btns center-element">
-          <span (click)="GoToProductPage()" class="tab__btn active-tab " style="margin-top: 30px" data-target="#featured"
+  <div class="tab__btns center-element" *ngIf="isViewAllProductShown">
+          <span (click)="GoToProductPage()" class="tab__btn active-tab " style="margin-top: 30px"
+                data-target="#featured"
           >View More Products</span
           >
 

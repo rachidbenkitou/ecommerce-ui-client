@@ -8,7 +8,13 @@
 
   <!--=============== PRODUCTS ===============-->
 
-  <app-product-list [products]="productsList"></app-product-list>
+  <app-product-list
+    [products]="productsList"
+    [isPaginationShown]="false"
+    [isViewAllProductShown]="true"
+    [GreenTitle]="'Our'"
+    [BlackTitle]="'Products'">
+  </app-product-list>
 
 
   <!--=============== DEALS ===============-->

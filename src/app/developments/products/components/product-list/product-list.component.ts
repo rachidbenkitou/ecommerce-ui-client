@@ -12,6 +12,10 @@ import {Router} from "@angular/router";
 })
 export class ProductListComponent implements OnInit {
   @Input() products: any[] = [];
+  @Input() isPaginationShown: boolean = true;
+  @Input() isViewAllProductShown: boolean = true;
+  @Input() GreenTitle: string = 'No Text Provided';
+  @Input() BlackTitle: string = 'No Text Provided';
 
   constructor(
     private productService: ProductsService,
