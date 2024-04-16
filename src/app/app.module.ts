@@ -11,6 +11,7 @@ import {provideToastr, ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule, provideAnimations} from "@angular/platform-browser/animations";
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {TokenInterceptorService} from "./developments/security/token-intercepter.service";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {TokenInterceptorService} from "./developments/security/token-intercepter
     AppRoutingModule,
     HttpClientModule,
     ToastrModule.forRoot(),
+    NgSelectModule
   ],
   providers: [
     provideClientHydration(),

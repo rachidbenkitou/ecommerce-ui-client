@@ -1,3 +1,46 @@
 .hidden {
   display: none;
 }
+
+@keyframes slideAnimation {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.home__container {
+  position: relative;
+}
+
+.home__content, .home__img {
+  animation: slideAnimation 1s ease-in-out; /* Animation for slides */
+}
+.slide-animation {
+  animation: slideAnimation 1s ease-in-out;
+}
+
+.nav-icons {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  opacity: 0; /* Initially hide the icons */
+  transition: opacity 1s ease; /* Adjust transition duration */
+  font-size: 40px; /* Increase the icon size */
+  cursor: pointer;
+}
+
+.home__container:hover .nav-icons {
+  opacity: 0.4; /* Show the icons on hover */
+}
+
+.nav-icon {
+  opacity: 0.7; /* Reduce opacity */
+}

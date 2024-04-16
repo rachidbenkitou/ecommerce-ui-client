@@ -8,11 +8,15 @@ import {SharedModule} from "../shared/shared.module";
 import {CategoriesModule} from "../categories/categories.module";
 import {CommonModule} from "@angular/common";
 import {PackageListComponent} from "../packages/components/package-list/package-list.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {ProductsPageComponent} from "./components/products-page/products-page.component";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 @NgModule({
   declarations: [
     ProductLandingPageComponent,
     ProductPageComponent,
+    ProductsPageComponent,
     ProductListComponent,
     PackageListComponent
   ],
@@ -22,6 +26,9 @@ import {PackageListComponent} from "../packages/components/package-list/package-
     SharedModule,
     CategoriesModule,
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgSelectModule,
   ]
 })
 export class ProductsModule {

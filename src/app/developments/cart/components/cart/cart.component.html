@@ -1,167 +1,110 @@
-<section class="cart  container">
+<section class="container">
 
-  <div class="alert alert-success text-center" role="alert" *ngIf="cartSize===0"
-       style="border-radius: 20px; background-color: #d0e0d0; text-align: center; padding: 3rem">
-    <strong>The Cart is Empty!</strong>
-  </div>
-
-  <div class="cart__actions" style="margin-bottom: 20px">
-    <!--       Check if user is logged in -->
-    <ng-container *ngIf="isUserLoggedIn && cartSize!==0;">
-      <button (click)="placeOrder()" class="btn flex btn--md">
-        <i class="fi-rs-shopping-bag"></i> Send the Order
-      </button>
-    </ng-container>
-
-    <!--       Popup form for users who are not logged in -->
-    <ng-container *ngIf="!isUserLoggedIn && cartSize!==0;">
-      <button (click)="goToSaleContactForm()" class="btn flex btn--md">
-        <i class="fi-rs-shopping-bag"></i> Fill your contacts
-      </button>
-    </ng-container>
-  </div>
-
-  <div class="table__container" *ngIf="cartSize!==0">
-    <table class="table">
-      <tr>
-        <th>Image</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Subtotal</th>
-        <th>Remove</th>
-      </tr>
-      <tr *ngFor="let product of cart">
-        <td>
-          <img
-            [src]="'assets/img/'+product?.productImagePath"
-            [alt]="product?.productImagePath"
-            class="table__img"/>
-        </td>
-        <td>
-          <h3 class="table__title">{{ product.name }}</h3>
-          <p class="table__description">{{ product.description }}</p>
-        </td>
-        <td><span class="table__price"> {{ product.price }} MAD</span></td>
-
-
-<!--        &lt;!&ndash;          <td><input type="number" value="{{ product.quantity }}" class="quantity"/></td>&ndash;&gt;-->
-<!--        <td><input type="number" [(ngModel)]="product.quantity" (change)="updateQuantity(product)" class="quantity"-->
-<!--                   min="1"/></td>-->
-
-        <td>
-          <div class="quantity-control">
-            <strong><i class="fa-solid fa-minus pointerCursor"  (click)="decrementQuantity(product)"></i></strong>
-            <span class="quantity-control__value">{{ product.quantity }}</span>
-            <strong><i class="fa-solid fa-plus pointerCursor" (click)="incrementQuantity(product)"></i></strong>
-          </div>
-        </td>
-
-
-        <td><span class="table__subtotal"> {{ product.price * product?.quantity }} MAD</span></td>
-        <td><i class="fi fi-rs-trash table__trash" (click)="deleteItem(product.id)" style="cursor: pointer"></i></td>
-      </tr>
-    </table>
+  <div class="alert  text-center" role="alert" *ngIf="cartSize===0" style="background-color: #e9f6eb">
+    The Cart is Empty!
   </div>
 
 
-  <div class="divider" *ngIf="cartSize!==0">
-    <i class="fi fi-rs-fingerprint"></i>
-  </div>
+  <div class="my-table__container" *ngIf="cartSize !== 0" style="margin-top: 10px">
 
+    <div class="container">
+      <div class="cart">
+        <div class="col-md-12 col-lg-10 mx-auto">
 
-  <div class="cart__group grid" *ngIf="cartSize!==0">
-    <div>
+          <div *ngFor="let item of cart" class="cart-item">
+            <div class="row">
+              <div style="" class="col-md-7 center-item">
+                <img [src]="'assets/img/'+item?.productImagePath"
+                     [alt]="item?.productImagePath">
 
-
-      <div class="cart__shipping">
-        <h3 class="section__title">Apply Coupon</h3>
-
-        <form action="" class="coupon__form form grid">
-          <div class="form__group grid">
-            <input
-              type="text"
-              class="form__input"
-              placeholder="Enter Your Coupon"
-            />
-
-            <div class="form__btn">
-              <button class="btn flex btn--sm">
-                <i class="fi-rs-label"></i> Apply
-              </button>
+                <h5>{{ item.name }} ( ${{ item.price }} )</h5>
+              </div>
+              <div class="col-md-5 center-item">
+                <div class="input-group number-spinner">
+                  <button (click)="decrementQuantity(item)"><i class="fas fa-minus"></i></button>
+                  <input readonly type="number" min="1" class="form-control text-center" [(ngModel)]="item.quantity"
+                         style="margin: 12px; background-color: white">
+                  <button (click)="incrementQuantity(item)"><i class="fas fa-plus"></i></button>
+                </div>
+                <h5>$ <span>{{ item.price * item.quantity }}</span></h5>
+                <i (click)="deleteItem(item.id)" class="fa-solid fa-trash cursorPointer"></i>
+              </div>
             </div>
           </div>
-        </form>
-      </div>
 
+          <div class="cart-item">
+            <div class="row g-2">
+              <div class="col-6">
+                <h5>Subtotal: </h5>
+                <h5>Tax:</h5>
+                <h5>Total:</h5>
+              </div>
+              <div class="col-6 status">
+                <h5>$<span id="sub-total">{{totalPrice}} MAD</span></h5>
+                <h5><span id="tax-amount">0 MAD</span></h5>
+                <h5>$<span id="total-price">{{totalPrice}} MAD</span></h5>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12 pt-4 pb-4">
+            <div class="cart__actions d-flex justify-content-center" style="margin-bottom: 10px">
+              <!-- Check if user is logged in -->
+              <ng-container *ngIf="isUserLoggedIn && cartSize!==0;">
+                <button (click)="placeOrder()" class="my-btn flex my-btn--md">
+                  <i class="fi-rs-shopping-bag"></i> Send the Order
+                </button>
+              </ng-container>
+
+              <!-- Popup form for users who are not logged in -->
+              <ng-container *ngIf="!isUserLoggedIn && cartSize!==0;">
+                <button (click)="goToSaleContactForm()" class="my-btn flex my-btn--md">
+                  <i class="fi-rs-shopping-bag"></i> Fill your contacts
+                </button>
+              </ng-container>
+            </div>
+
+
+            <div class="d-flex justify-content-center " *ngIf="cartSize!==0">
+              <div>
+                <div class="cart__shipping" style="margin-top: 30px">
+                  <h3 class="section__title">Apply Coupon</h3>
+
+                  <form action="" class="coupon__form form grid">
+                    <div class="form__group grid">
+                      <input
+                        style="min-width: 300px"
+                        type="text"
+                        class="form__input"
+                        placeholder="Enter Your Coupon"
+                      />
+
+                      <div class="form__my-btn">
+                        <button class="my-btn flex my-btn--sm">
+                          <i class="fi-rs-label"></i> Apply
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+
+
+
+          </div>
+
+
+
+        </div>
+      </div>
     </div>
 
-    <div class="cart__total">
-      <h3 class="section__title">Cart Totals</h3>
-
-      <table class="cart__total-table">
-        <tr>
-          <td><span class="cart__total-title">Cart Subtotal</span></td>
-          <td><span class="cart__total-price">{{totalPrice}} MAD</span></td>
-        </tr>
-
-        <tr>
-          <td><span class="cart__total-title">Shipping</span></td>
-          <td><span class="cart__total-price">0 MAD</span></td>
-        </tr>
-
-        <tr>
-          <td><span class="cart__total-title">Total</span></td>
-          <td><span class="cart__total-price">{{totalPrice}} MAD</span></td>
-        </tr>
-      </table>
-
-      <div class="cart__actions" style="margin-bottom: 20px">
-        <!--       Check if user is logged in -->
-        <ng-container *ngIf="isUserLoggedIn && cartSize!==0;">
-          <button (click)="placeOrder()" class="btn flex btn--md">
-            <i class="fi-rs-shopping-bag"></i> Send the Order
-          </button>
-        </ng-container>
-
-        <!--       Popup form for users who are not logged in -->
-        <ng-container *ngIf="!isUserLoggedIn && cartSize!==0;">
-          <button (click)="goToSaleContactForm()" class="btn flex btn--md">
-            <i class="fi-rs-shopping-bag"></i> Fill your contacts
-          </button>
-        </ng-container>
-      </div>
-    </div>
   </div>
 
-  <div class="divider" *ngIf="cartSize!==0">
-    <i class="fi fi-rs-fingerprint"></i>
-  </div>
 
-  <!--  &lt;!&ndash;    Only if user is connected &ndash;&gt;-->
 
-  <!--  <div id="formContact" class="container " style="width: 70%;" *ngIf="!isUserLoggedIn && cartSize!==0" >-->
 
-  <!--    <div class="login">-->
-  <!--      <h3 class="section__title">Login</h3>-->
 
-  <!--      <form action="" class="form grid">-->
-  <!--        <input-->
-  <!--          type="email"-->
-  <!--          placeholder="Your Email"-->
-  <!--          class="form__input"-->
-  <!--        />-->
-
-  <!--        <input-->
-  <!--          type="password"-->
-  <!--          placeholder="Your Password"-->
-  <!--          class="form__input"-->
-  <!--        />-->
-
-  <!--        <div class="form__btn">-->
-  <!--          <button class="btn">Login</button>-->
-  <!--        </div>-->
-  <!--      </form>-->
-  <!--    </div>-->
-  <!--  </div>-->
 </section>

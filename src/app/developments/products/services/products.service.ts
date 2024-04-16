@@ -26,23 +26,24 @@ export class ProductsService {
     categoryId?: number
   ): Observable<any[]> {
     // Initialize HttpParams
-    let params = new HttpParams()
+    let params: any = new HttpParams()
       .set('page', page.toString())
       .set('size', size.toString())
       .set('sortProperty', sortProperty)
       .set('sortDirection', sortDirection);
 
-    // Add optional parameters only if they are present
-    if (id !== undefined) params = params.set('productId', id.toString());
-    if (name) params = params.set('productName', name);
-    if (price !== undefined) params = params.set('productPrice', price.toString());
-    if (quantity !== undefined) params = params.set('productQuantity', quantity.toString());
-    if (productVisibility) params = params.set('productVisibility', productVisibility);
-    if (categoryId !== undefined) params = params.set('categoryId', categoryId.toString());
+    // Add optional parameters only if they are present and not undefined
+    if (id != null && id !== undefined) params = params.set('productId', id);
+    if (name != null && name !== undefined && name !== '') params = params.set('productName', name);
+    if (price != null && price !== undefined) params = params.set('productPrice', price.toString());
+    if (quantity != null && quantity !== undefined) params = params.set('productQuantity', quantity.toString());
+    if (productVisibility != null && productVisibility !== undefined && productVisibility !== '') params = params.set('productVisibility', productVisibility);
+    if (categoryId != null && categoryId !== undefined) params = params.set('categoryId', categoryId.toString());
 
     // Send the GET request with the constructed query parameters
-    return this.http.get<any[]>(this.url, {params: params});
+    return this.http.get<any[]>(this.url, { params: params });
   }
+
 
   getProductById(id?: number): Observable<any> {
     let params: any = new HttpParams();
@@ -57,6 +58,7 @@ export class ProductsService {
 
   private wishlistProductCountSubject = new BehaviorSubject<number>(0);
   wishlistProductCount$ = this.wishlistProductCountSubject.asObservable();
+
   incrementProductCount() {
     if (typeof localStorage !== 'undefined') {
       try {

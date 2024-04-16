@@ -4,6 +4,9 @@
 // regular style toast
 @import 'ngx-toastr/toastr';
 
+@import "@ng-select/ng-select/themes/default.theme.css";
+
+
 /*=============== VARIABLES CSS ===============*/
 :root {
   --header-height: 4rem;
@@ -115,7 +118,7 @@ input {
   outline: none;
 }
 
-table {
+my-table {
   width: 100%;
   border-collapse: collapse;
 }
@@ -340,7 +343,7 @@ table {
 }
 
 /*=============== BUTTONS ===============*/
-.btn {
+.my-btn {
   display: inline-block;
   background-color: var(--first-color);
   border: 2px solid var(--first-color);
@@ -355,22 +358,22 @@ table {
   transition: all 0.4s var(--transition);
 }
 
-.btn:hover {
+.my-btn:hover {
   background-color: transparent;
   color: var(--first-color);
 }
 
-.btn--md,
-.btn--sm {
+.my-btn--md,
+.my-btn--sm {
   font-family: var(--body-font);
 }
 
-.btn--md {
+.my-btn--md {
   height: 45px;
   line-height: 42px;
 }
 
-.btn--sm {
+.my-btn--sm {
   height: 40px;
   line-height: 36px;
 }
@@ -1204,83 +1207,82 @@ table {
 }
 
 /*=============== CART ===============*/
-.table__container {
+.my-table__container {
   overflow-x: auto;
 }
-
-.table {
+.my-table {
   table-layout: fixed;
   margin-bottom: 2rem;
 }
 
-.table tr {
+.my-table tr {
   border-top: 1px solid var(--border-color-alt);
 }
 
-.table tr:last-child {
+.my-table tr:last-child {
   border-bottom: 1px solid var(--border-color-alt);
 }
 
-.table tr th:nth-child(1),
-.table tr td:nth-child(1) {
-  width: 216px;
+.my-table tr th:nth-child(1),
+.my-table tr td:nth-child(1) {
+  min-width: 100px;
 }
 
-.table tr th:nth-child(2),
-.table tr td:nth-child(2) {
-  width: 400px;
+.my-table tr th:nth-child(2),
+.my-table tr td:nth-child(2) {
+  min-width: 400px;
 }
 
-.table tr th:nth-child(3),
-.table tr td:nth-child(3) {
-  width: 108px;
+.my-table tr th:nth-child(3),
+.my-table tr td:nth-child(3) {
+  min-width: 108px;
 }
 
-.table tr th:nth-child(4),
-.table tr td:nth-child(4) {
-  width: 220px;
+.my-table tr th:nth-child(4),
+.my-table tr td:nth-child(4) {
+  min-width: 220px;
 }
 
-.table tr th:nth-child(5),
-.table tr td:nth-child(5) {
-  width: 200px;
+.my-table tr th:nth-child(5),
+.my-table tr td:nth-child(5) {
+  min-width: 200px;
 }
 
-.table tr th:nth-child(6),
-.table tr td:nth-child(6) {
-  width: 152px;
+.my-table tr th:nth-child(6),
+.my-table tr td:nth-child(6) {
+  min-width: 152px;
 }
 
-.table__img {
+.my-table__img{
   width: 80px;
 }
 
-.table tr th,
-.table tr td {
+.my-table tr th,
+.my-table tr td {
   padding: 0.5rem;
   text-align: center;
 }
 
-.table__title,
-.table__description,
-.table__price,
-.table__subtotal,
-.table__trash,
-.table__stock {
+.my-table__title,
+.my-table__description,
+.my-table__price,
+.my-table__subtotal,
+.my-table__trash,
+.my-table__stock {
   font-size: var(--small-font-size);
 }
 
-.table__title,
-.table__stock {
+.my-table__title,
+.my-table__stock {
   color: var(--first-color);
 }
 
-.table__description {
+.my-table__description {
   max-width: 250px;
   margin-inline: auto;
 }
 
-.table__trash {
+.my-table__trash {
   color: var(--text-color-light);
 }
 
@@ -1341,12 +1343,12 @@ table {
   border-radius: 0.25rem;
   padding: 1.75rem;
 }
-
-.cart__total-table {
+//tttttttttttttttttttttttttttttttttt trasfer to table instead of my table
+.cart__total-my-table{
   margin-bottom: 1rem;
 }
 
-.cart__total-table tr td {
+.cart__total-my-table tr td {
   border: 1px solid var(--border-color-alt);
   padding: 0.75rem 0.5rem;
   width: 50%;
@@ -1388,14 +1390,14 @@ table {
   font-size: var(--small-font-size);
 }
 
-.order__table tr th,
-.order__table tr td {
+.order__my-table tr th,
+.order__my-table tr td {
   border: 1px solid var(--border-color-alt);
   padding: 0.5rem;
   text-align: center;
 }
 
-.order__table tr th {
+.order__my-table tr th {
   color: var(--title-color);
   font-size: var(--small-font-size);
 }
@@ -1404,7 +1406,7 @@ table {
   width: 80px;
 }
 
-.table__quantity,
+.my-table__quantity,
 .order__subtitle {
   font-size: var(--small-font-size);
 }
@@ -1436,18 +1438,18 @@ table {
 }
 
 /*=============== COMPARE ===============*/
-.compare__table tr th,
-.compare__table tr td {
+.compare__my-table tr th,
+.compare__my-table tr td {
   padding: 0.5rem;
   border: 1px solid var(--border-color-alt);
 }
 
-.compare__table tr th {
+.compare__my-table tr th {
   color: var(--text-color-light);
   font-size: var(--small-font-size);
 }
 
-.compare__table tr td {
+.compare__my-table tr td {
   text-align: center;
 }
 
@@ -1455,8 +1457,8 @@ table {
   justify-content: center;
 }
 
-.table__weight,
-.table__dimension {
+.my-table__weight,
+.my-table__dimension {
   font-size: var(--small-font-size);
 }
 
@@ -1521,13 +1523,13 @@ table {
   padding: 1rem;
 }
 
-.placed__order-table tr th {
+.placed__order-my-table tr th {
   color: var(--title-color);
   text-align: left;
 }
 
-.placed__order-table tr th,
-.placed__order-table tr td {
+.placed__order-my-table tr th,
+.placed__order-my-table tr td {
   border: 1px solid var(--border-color-alt);
   padding: 0.5rem;
   font-size: var(--small-font-size);
@@ -1742,17 +1744,17 @@ table {
     justify-self: center;
   }
 
-  .btn {
+  .my-btn {
     height: 45px;
     line-height: 45px;
   }
 
-  .btn--md {
+  .my-btn--md {
     height: 42px;
     line-height: 39px;
   }
 
-  .btn--sm {
+  .my-btn--sm {
     height: 38px;
     line-height: 35px;
   }
@@ -1773,33 +1775,33 @@ table {
     padding: 1.25rem;
   }
 
-  .table tr th:nth-child(1),
-  .table tr td:nth-child(1) {
+  .my-table tr th:nth-child(1),
+  .my-table tr td:nth-child(1) {
     width: 140px;
   }
 
-  .table tr th:nth-child(2),
-  .table tr td:nth-child(2) {
+  .my-table tr th:nth-child(2),
+  .my-table tr td:nth-child(2) {
     width: 330px;
   }
 
-  .table tr th:nth-child(3),
-  .table tr td:nth-child(3) {
+  .my-table tr th:nth-child(3),
+  .my-table tr td:nth-child(3) {
     width: 80px;
   }
 
-  .table tr th:nth-child(4),
-  .table tr td:nth-child(4) {
+  .my-table tr th:nth-child(4),
+  .my-table tr td:nth-child(4) {
     width: 160px;
   }
 
-  .table tr th:nth-child(5),
-  .table tr td:nth-child(5) {
+  .my-table tr th:nth-child(5),
+  .my-table tr td:nth-child(5) {
     width: 160px;
   }
 
-  .table tr th:nth-child(6),
-  .table tr td:nth-child(6) {
+  .my-table tr th:nth-child(6),
+  .my-table tr td:nth-child(6) {
     width: 100px;
   }
 }
@@ -1822,7 +1824,7 @@ table {
     padding: 0.75rem;
   }
 
-  .compare__table tr td {
+  .compare__my-table tr td {
     display: block;
   }
 }
@@ -1853,15 +1855,15 @@ table {
     line-height: 30px;
   }
 
-  .placed__order-table th,
-  .order__table tr th {
+  .placed__order-my-table th,
+  .order__my-table tr th {
     display: none;
   }
 
-  .placed__order-table tr td,
-  .order__table tr td,
-  .info__table tr th,
-  .info__table tr td {
+  .placed__order-my-table tr td,
+  .order__my-table tr td,
+  .info__my-table tr th,
+  .info__my-table tr td {
     display: block;
   }
 
@@ -1897,13 +1899,13 @@ table {
 }
 
 @media screen and (max-width: 350px) {
-  .action__btn {
+  .action__my-btn {
     width: 36px;
     height: 36px;
     line-height: 38px;
   }
 
-  .cart__btn {
+  .cart__my-btn {
     bottom: 1.4rem;
     right: 1.25rem;
   }
@@ -1925,13 +1927,14 @@ table {
     display: none;
   }
 
-  .compare__table tr th,
-  .cart__total-table tr td {
+  .compare__my-table tr th,
+  .cart__total-my-table tr td {
     display: block;
     width: 100%;
   }
 }
 
+// My Customer Globale Styles
 .center-element {
   display: flex;
   align-items: center;
