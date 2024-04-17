@@ -28,7 +28,6 @@ export class ProductsPageComponent implements OnInit {
   }
 
   getProducts(productName?: string, sortingByField?: string, categoryId?: number): void {
-    alert(productName +' '+categoryId)
     this.productService.getProducts(0, 25, sortingByField, 'DESC', undefined, productName, undefined, undefined, undefined, categoryId)
       .subscribe(response => {
         this.productsList = response;

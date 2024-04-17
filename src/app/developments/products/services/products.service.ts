@@ -41,16 +41,12 @@ export class ProductsService {
     if (categoryId != null && categoryId !== undefined) params = params.set('categoryId', categoryId.toString());
 
     // Send the GET request with the constructed query parameters
-    return this.http.get<any[]>(this.url, { params: params });
+    return this.http.get<any[]>(this.url, {params: params});
   }
 
 
   getProductById(id?: number): Observable<any> {
-    let params: any = new HttpParams();
-    if (id != null) {
-      params = params.set("productId", id);
-    }
-    return this.http.get<any>(`${this.url}`, params)
+    return this.http.get<any>(`${this.url}/${id}`)
   }
 
   private productCountSubject = new BehaviorSubject<number>(0);

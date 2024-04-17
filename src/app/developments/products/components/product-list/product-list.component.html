@@ -13,7 +13,7 @@
 
         <div class="product__item" *ngFor="let product of products">
           <div class="product__banner">
-            <a [routerLink]="'/products/singleProduct/'+product.id" [state]="{ product: product }"
+            <a [routerLink]="'/products/singleProduct/'+product.id"
                class="product__images">
               <img
                 [src]="'assets/img/'+product?.productImagePath"
@@ -23,7 +23,7 @@
             </a>
 
             <div class="product__actions">
-              <a [routerLink]="'/products/singleProduct/'+product.id" [state]="{ product: product }" class="action__btn" aria-label="Quick View">
+              <a [routerLink]="'/products/singleProduct/'+product.id" class="action__btn" aria-label="Quick View">
                 <i class="fi fi-rs-eye"></i>
               </a>
 
@@ -89,7 +89,7 @@
   </ul>
 
   <div class="tab__btns center-element" *ngIf="isViewAllProductShown">
-          <span (click)="GoToProductPage()" class="tab__btn active-tab " style="margin-top: 30px"
+          <span (click)="GoToProductsPage()" class="tab__btn active-tab " style="margin-top: 30px"
                 data-target="#featured"
           >View More Products</span
           >
