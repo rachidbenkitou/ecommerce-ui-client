@@ -1,9 +1,6 @@
 <section class="container">
 
-  <div class="alert  text-center" role="alert" *ngIf="cartSize===0" style="background-color: #e9f6eb">
-    The Cart is Empty!
-  </div>
-
+  <app-alert *ngIf="cartSize===0" [message]="'The Cart is Empty!'"></app-alert>
 
   <div class="my-table__container" *ngIf="cartSize !== 0" style="margin-top: 10px">
 

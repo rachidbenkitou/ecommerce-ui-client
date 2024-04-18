@@ -1,18 +1,27 @@
 import {NgModule} from "@angular/core";
 import {RouterModule} from "@angular/router";
 import {PackageRoute} from "./packages-routing.module";
-import {PackageListComponent} from "./components/package-list/package-list.component";
 import {CommonModule} from "@angular/common";
+import {PackagesPageComponent} from './components/packages-page/packages-page.component';
+import {PackageListComponent} from "./components/package-list/package-list.component";
+import { PackagePageComponent } from './components/package-page/package-page.component';
+import {NgSelectModule} from "@ng-select/ng-select";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     PackageListComponent,
+    PackagesPageComponent,
+    PackagePageComponent,
   ],
   imports: [
     RouterModule.forChild(PackageRoute),
-    CommonModule
+    CommonModule,
+    NgSelectModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
-  exports: [PackageListComponent]
+  // exports: [PackageListComponent]
 })
 export class PackageModule {
 }

@@ -11,42 +11,42 @@
       <div class="products__container grid">
 
 
-        <div class="product__item" *ngFor="let product of products">
+        <div class="product__item" *ngFor="let package of packages">
           <div class="product__banner">
-            <a [routerLink]="'/products/singleProduct/'+product.id"
+            <a [routerLink]="'/packages/id/'+package.id"
                class="product__images">
               <img
-                [src]="'assets/img/'+product?.productImagePath"
-                [alt]="product?.productImagePath"
+                [src]="'assets/img/'+package?.packageImagePath"
+                [alt]="package?.packageImagePath"
                 class="product__img default"
               />
             </a>
 
             <div class="product__actions">
-              <a [routerLink]="'/products/singleProduct/'+product.id" class="action__btn" aria-label="Quick View">
+              <a [routerLink]="'/packages/id/'+package.id" class="action__btn" aria-label="Quick View">
                 <i class="fi fi-rs-eye"></i>
               </a>
 
               <a
-                (click)="addToWishlist(product)"
-                class="action__btn"
+
+                class="action__btn cursorPointer"
                 aria-label="Add To Wishlist"
               >
                 <i class="fi fi-rs-heart"></i>
               </a>
 
-              <a href="#" class="action__btn" aria-label="Compare">
-                <i class="fi fi-rs-shuffle"></i>
+              <a
+                class="action__btn cursorPointer" aria-label="Add to Cart">
+                <i class="fi fi-rs-shopping-bag-add"></i>
               </a>
+
             </div>
 
-            <div class="product__badge light-pink">{{product?.categoryName}}</div>
           </div>
 
           <div class="product__content">
-            <span class="product__category">{{product?.categoryName}}</span>
             <a href="details.html">
-              <h3 class="product__title">{{product?.name}}</h3>
+              <h3 class="product__title">{{package?.name}}</h3>
             </a>
             <div class="product__rating">
               <i class="fi fi-rs-star"></i>
@@ -56,17 +56,10 @@
               <i class="fi fi-rs-star"></i>
             </div>
             <div class="product__price flex">
-              <span class="new__price">{{product?.price}} MAD</span>
-              <span class="old__price">{{product?.comparePrice}} MAD</span>
+              <span class="new__price">{{package?.price}} MAD</span>
+              <span class="old__price">{{package?.comparePrice}} MAD</span>
             </div>
 
-            <a
-              (click)="addToCart(product)"
-              class="action__btn cart__btn"
-              aria-label="Add To Cart"
-            >
-              <i class="fi fi-rs-shopping-bag-add"></i>
-            </a>
           </div>
         </div>
 
@@ -88,11 +81,4 @@
     </li>
   </ul>
 
-  <div class="tab__btns center-element" *ngIf="isViewAllProductShown">
-          <span (click)="GoToProductsPage()" class="tab__btn active-tab " style="margin-top: 30px"
-                data-target="#featured"
-          >View More Products</span
-          >
-
-  </div>
 </section>

@@ -19,6 +19,18 @@ const routes: Routes = [
         loadChildren: () => import('./developments/products/products.module').then(m => m.ProductsModule)
       },
       {
+        // canActivate: [AuthGuard],
+        // data: {roles: ['client_admin']},
+        path: 'packages',
+        loadChildren: () => import('./developments/packages/packages.module').then(m => m.PackageModule)
+      },
+      {
+        // canActivate: [AuthGuard],
+        // data: {roles: ['client_admin']},
+        path: 'categories',
+        loadChildren: () => import('./developments/categories/categories.module').then(m => m.CategoriesModule)
+      },
+      {
         path: 'loginRegister',
         loadChildren: () => import('./developments/login-register/login-register.module').then(m => m.LoginRegisterModule)
       },

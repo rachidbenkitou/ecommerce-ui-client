@@ -1,10 +1,7 @@
 <main class="main">
   <section class="wishlist section--lg container">
-    <div class="alert alert-success text-center" role="alert" *ngIf="wishlistSize===0"
-         style="border-radius: 20px; background-color: #d0e0d0; text-align: center; padding: 3rem">
-      <strong>The Wishlist is Empty!</strong>
-    </div>
-    <div  class="table-responsive" *ngIf="wishlistSize!==0">
+    <app-alert *ngIf="wishlistSize===0" [message]="'The Wishlist is Empty!'"></app-alert>
+    <div class="table-responsive" *ngIf="wishlistSize!==0">
       <table class="my-table">
         <tr>
           <th>Image</th>

@@ -29,14 +29,15 @@
 
               <a
                 (click)="addToWishlist(product)"
-                class="action__btn"
+                class="action__btn cursorPointer"
                 aria-label="Add To Wishlist"
               >
                 <i class="fi fi-rs-heart"></i>
               </a>
 
-              <a href="#" class="action__btn" aria-label="Compare">
-                <i class="fi fi-rs-shuffle"></i>
+              <a (click)="addToCart(product)"
+                 class="action__btn cursorPointer" aria-label="Add to Cart">
+                <i class="fi fi-rs-shopping-bag-add"></i>
               </a>
             </div>
 
@@ -62,7 +63,7 @@
 
             <a
               (click)="addToCart(product)"
-              class="action__btn cart__btn"
+              class="action__btn cart__btn cursorPointer"
               aria-label="Add To Cart"
             >
               <i class="fi fi-rs-shopping-bag-add"></i>

@@ -1,33 +1,33 @@
 <!--=============== MAIN ===============-->
 <main class="main">
-  <section class="details section--lg" *ngIf="product">
+  <section class="details section--lg" *ngIf="package">
     <div class="details__container container grid">
       <div class="details__group">
-        <img [src]="'assets/img/' + product.productImagePath" [alt]="product.name" class="details__img"/>
+        <img [src]="'assets/img/' + package.packageImagePath" [alt]="package.name" class="details__img"/>
 
         <div class="details__small-images grid">
           <!-- Loop through productImages if available -->
-          <img *ngFor="let image of product.productImages" [src]="'assets/img/' + image" [alt]="product.name"
+          <img *ngFor="let image of package.packageImagePath" [src]="'assets/img/' + image" [alt]="package.name"
                class="details__small-img"/>
         </div>
       </div>
 
       <div class="details__group">
-        <h3 class="details__title">{{ product.name }}</h3>
+        <h3 class="details__title">{{ package.name }}</h3>
         <p class="details__brand">Brands: <span>Bokeito Shop</span></p>
 
         <div class="details__price flex">
           <!-- Use product.price instead of hardcoding -->
-          <span class="new__price">{{ product.price }} MAD</span>
-          <span class="old__price">{{ product.comparePrice }} MAD</span>
+          <span class="new__price">{{ package.price }} MAD</span>
+          <span class="old__price">{{ package.comparePrice }} MAD</span>
           <span class="save__price">25% Off</span>
         </div>
 
-        <p class="short__description">{{ product.description }}</p>
+        <p class="short__description">{{ package.description }}</p>
 
         <ul class="product__list">
           <!-- Loop through product meta information -->
-          <li class="list__item flex" *ngFor="let meta of product.meta">
+          <li class="list__item flex" *ngFor="let meta of package.meta">
             <i class="{{ meta.icon }}"></i> {{ meta.text }}
           </li>
         </ul>
@@ -35,11 +35,12 @@
 
         <div class="details__action">
           <input type="number" class="quantity" [(ngModel)]="selectedQuantity"/>
-          <a (click)="addToCart(product)" class="my-btn my-btn--sm cursorPointer">Add to Cart</a>
-          <a href="#" class="my-btn my-btn--sm cursorPointer">Buy now</a>
-          <a (click)="addToWishlist(product)" class="details__action-btn cursorPointer"><i
+          <a  class="my-btn my-btn--sm cursorPointer">Add to Cart</a>
+          <a (click)="placeOrder(package)" class="my-btn my-btn--sm cursorPointer">Buy now</a>
+          <a  class="details__action-btn cursorPointer"><i
             class="fi fi-rs-heart"></i></a>
         </div>
+
       </div>
     </div>
   </section>
@@ -57,7 +58,7 @@
     <div class="details__tabs-content">
       <div class="details__tab-content active-tab" content id="info">
 
-        <div class="details__action" [innerHTML]="productHTMLContent"></div>
+        <div class="details__action" [innerHTML]="packageHTMLContent"></div>
 
       </div>
 
@@ -177,14 +178,4 @@
       </div>
     </div>
   </section>
-
-
-  <!--=============== PRODUCTS ===============-->
-  <app-product-list
-    [products]="productsList"
-    [isPaginationShown]="true"
-    [isViewAllProductShown]="true"
-    [GreenTitle]="'Related'"
-    [BlackTitle]="'Products'">
-  </app-product-list>
 </main>

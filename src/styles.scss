@@ -1210,6 +1210,7 @@ my-table {
 .my-table__container {
   overflow-x: auto;
 }
+
 .my-table {
   table-layout: fixed;
   margin-bottom: 2rem;
@@ -1253,7 +1254,7 @@ my-table {
   min-width: 152px;
 }
 
-.my-table__img{
+.my-table__img {
   width: 80px;
 }
 
@@ -1343,8 +1344,9 @@ my-table {
   border-radius: 0.25rem;
   padding: 1.75rem;
 }
+
 //tttttttttttttttttttttttttttttttttt trasfer to table instead of my table
-.cart__total-my-table{
+.cart__total-my-table {
   margin-bottom: 1rem;
 }
 
@@ -1944,3 +1946,4 @@ my-table {
 .cursorPointer {
   cursor: pointer;
 }
+

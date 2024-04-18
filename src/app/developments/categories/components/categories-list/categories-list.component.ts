@@ -1,5 +1,6 @@
-import { Component, Input, OnInit, ElementRef } from '@angular/core';
+import {Component, ElementRef, Input, OnInit} from '@angular/core';
 import Swiper from 'swiper';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-categories-list',
@@ -11,7 +12,8 @@ export class CategoriesListComponent implements OnInit {
   @Input() categoriesList: any[] = [];
   swiper: Swiper | undefined; // Define swiper as optional
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef, private router: Router) {
+  }
 
   ngOnInit(): void {
     this.swiper = new Swiper(this.elementRef.nativeElement.querySelector('.categories__container'), {
@@ -19,11 +21,11 @@ export class CategoriesListComponent implements OnInit {
       loop: true,
       navigation: false, // Disable built-in navigation
       breakpoints: {
-        350: { slidesPerView: 2 },
-        768: { slidesPerView: 3 },
-        992: { slidesPerView: 4 },
-        1200: { slidesPerView: 5 },
-        1400: { slidesPerView: 6 },
+        350: {slidesPerView: 2},
+        768: {slidesPerView: 3},
+        992: {slidesPerView: 4},
+        1200: {slidesPerView: 5},
+        1400: {slidesPerView: 6},
       },
     });
   }
@@ -40,7 +42,8 @@ export class CategoriesListComponent implements OnInit {
     }
   }
 
-  goToProductsBtCategoryPage() {
+  goToProductsBtCategoryPage(id: number) {
 
+    this.router.navigate([`/products/category/${id}`])
   }
 }

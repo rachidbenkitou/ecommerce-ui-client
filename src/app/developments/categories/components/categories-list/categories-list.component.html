@@ -3,11 +3,11 @@
     <h3 class="section__title"><span>Popular</span> Categories</h3>
   </div>
 
-    <div class="categories__container swiper cursorPointer" (click)="goToProductsBtCategoryPage()">
+    <div class="categories__container swiper " >
       <div class="swiper-wrapper">
         <a class="category__item swiper-slide" *ngFor="let category of categoriesList">
-          <img [src]="'assets/img/' + category?.categoryImagePath" [alt]="category?.categoryImagePath"
-               class="category__img"/>
+          <img (click)="goToProductsBtCategoryPage(category.id)" [src]="'assets/img/' + category?.categoryImagePath" [alt]="category?.categoryImagePath"
+               class="category__img cursorPointer"/>
           <h3 class="category__title">{{ category?.name }}</h3>
         </a>
       </div>

@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {CategoriesService} from "../../../categories/services/categories.service";
-import {PackagesService} from "../../../packages/services/packages.service";
 import {ProductsService} from "../../services/products.service";
 import {Router} from "@angular/router";
 
@@ -17,7 +16,6 @@ export class ProductLandingPageComponent implements OnInit {
   categoriesList: any[] = [];
 
   constructor(private categoryService: CategoriesService,
-              private packageService: PackagesService,
               private productService: ProductsService,
               private router: Router,
   ) {
@@ -34,9 +32,7 @@ export class ProductLandingPageComponent implements OnInit {
   }
 
   getPackages(): void {
-    this.packageService.getPackages().subscribe(response => {
-      this.packageList = response;
-    })
+
   }
 
   getCategories(): void {

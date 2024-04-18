@@ -2,6 +2,7 @@ import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/
 import {ProductsService} from "../../../products/services/products.service";
 import {Router} from '@angular/router';
 import {AuthService} from "../../../security/auth.service";
+import {environment} from "../../../../../environements/environement";
 
 @Component({
   selector: 'app-navbar',
@@ -38,8 +39,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   gotToHome() {
-    this.router.navigate(['/products/homePage']);
-    //window.location.href = `${environment.angularUrl}/products/homePage`;
+    window.location.href = `${environment.angularUrl}/products/homePage`;
+
   }
 
   ngOnInit(): void {
@@ -69,7 +70,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
   }
 
-  TestAlert() {
-    alert('It works!')
-  }
+    goToPackagesPage() {
+      // Navigate to the '/packages' route
+      this.router.navigate(['/packages']);
+    }
+
 }

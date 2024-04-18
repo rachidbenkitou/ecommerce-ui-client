@@ -1,0 +1,24 @@
+<div class="setupUpMargin">
+  <div class="cart-item">
+    <div class="row">
+      <form [formGroup]="searchForm" (ngSubmit)="search()">
+        <div class="input-container">
+          <input placeholder="Ex. Package Name" class="simpleInputCustomization" formControlName="name">
+          <input placeholder="Ex. Package ID" class="simpleInputCustomization" formControlName="packageId">
+
+          <ng-select [items]="sortingOptions" bindLabel="name" bindValue="value" placeholder="Ex. Sorting by ID"
+                     formControlName="sortingByField" class="custom-select"></ng-select>
+          <button type="submit" class="btn btn-success cursorPointer"><i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<app-package-list
+  [packages]="packagesList"
+  [isPaginationShown]="true"
+  [isViewAllProductShown]="true"
+  [GreenTitle]="'Our'"
+  [BlackTitle]="'Packages'"
+></app-package-list>
