@@ -1,7 +1,9 @@
 <!--=============== PRODUCTS ===============-->
 <section class="products section container">
+  <!--<p class="total__products">We found <span>688</span> items for you!</p>-->
+
   <div class="tab__btns center-element">
-    <h3 class="section__title"><span>Popular</span> Packages</h3>
+    <h3 class="section__title"><span>{{this.GreenTitle}}</span> {{this.BlackTitle}}</h3>
   </div>
 
   <div class="tab__items">
@@ -9,9 +11,10 @@
       <div class="products__container grid">
 
 
-        <div class="product__item" *ngFor="let product of packages">
+        <div class="product__item" *ngFor="let product of products">
           <div class="product__banner">
-            <a href="details.html" class="product__images">
+            <a [routerLink]="'/products/singleProduct/'+product.id"
+               class="product__images">
               <img
                 [src]="'assets/img/'+product?.productImagePath"
                 [alt]="product?.productImagePath"
@@ -20,12 +23,12 @@
             </a>
 
             <div class="product__actions">
-              <a href="#" class="action__btn" aria-label="Quick View">
+              <a [routerLink]="'/products/singleProduct/'+product.id" class="action__btn" aria-label="Quick View">
                 <i class="fi fi-rs-eye"></i>
               </a>
 
               <a
-                href="#"
+                (click)="addToWishlist(product)"
                 class="action__btn"
                 aria-label="Add To Wishlist"
               >
@@ -58,7 +61,7 @@
             </div>
 
             <a
-              href="#"
+              (click)="addToCart(product)"
               class="action__btn cart__btn"
               aria-label="Add To Cart"
             >
@@ -69,10 +72,25 @@
 
       </div>
     </div>
+
   </div>
 
-  <div class="tab__btns center-element">
-          <span class="tab__btn active-tab " style="margin-top: 30px" data-target="#featured"
+  <ul class="pagination" *ngIf="isPaginationShown">
+    <li><a href="#" class="pagination__link active">01</a></li>
+    <li><a href="#" class="pagination__link">02</a></li>
+    <li><a href="#" class="pagination__link">03</a></li>
+    <li><a href="#" class="pagination__link">...</a></li>
+    <li><a href="#" class="pagination__link">16</a></li>
+    <li>
+      <a href="#" class="pagination__link icon">
+        <i class="fi-rs-angle-double-small-right"></i>
+      </a>
+    </li>
+  </ul>
+
+  <div class="tab__btns center-element" *ngIf="isViewAllProductShown">
+          <span (click)="GoToProductsPage()" class="tab__btn active-tab " style="margin-top: 30px"
+                data-target="#featured"
           >View More Products</span
           >
 

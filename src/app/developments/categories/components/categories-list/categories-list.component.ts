@@ -1,58 +1,46 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {CategoriesService} from "../../services/categories.service";
+import { Component, Input, OnInit, ElementRef } from '@angular/core';
+import Swiper from 'swiper';
 
 @Component({
   selector: 'app-categories-list',
   templateUrl: './categories-list.component.html',
-  styleUrl: './categories-list.component.scss'
+  styleUrls: ['./categories-list.component.scss']
 })
 export class CategoriesListComponent implements OnInit {
+
   @Input() categoriesList: any[] = [];
+  swiper: Swiper | undefined; // Define swiper as optional
 
-  constructor(private categoryService: CategoriesService) {
-  }
+  constructor(private elementRef: ElementRef) {}
 
-
-  handleCategoryClick(id: number): void {
-    alert(id)
-  }
-
-  products: any[] | undefined;
-
-  responsiveOptions: any[] | undefined;
-
-
-  ngOnInit() {
-    this.responsiveOptions = [
-      {
-        breakpoint: '1199px',
-        numVisible: 1,
-        numScroll: 1
+  ngOnInit(): void {
+    this.swiper = new Swiper(this.elementRef.nativeElement.querySelector('.categories__container'), {
+      spaceBetween: 24,
+      loop: true,
+      navigation: false, // Disable built-in navigation
+      breakpoints: {
+        350: { slidesPerView: 2 },
+        768: { slidesPerView: 3 },
+        992: { slidesPerView: 4 },
+        1200: { slidesPerView: 5 },
+        1400: { slidesPerView: 6 },
       },
-      {
-        breakpoint: '991px',
-        numVisible: 2,
-        numScroll: 1
-      },
-      {
-        breakpoint: '767px',
-        numVisible: 1,
-        numScroll: 1
-      }
-    ];
+    });
   }
 
-  getSeverity(status: string) {
-    switch (status) {
-      case 'INSTOCK':
-        return 'success';
-      case 'LOWSTOCK':
-        return 'warning';
-      case 'OUTOFSTOCK':
-        return 'danger';
-      default:
-        return 'OUTOFSTOCK'
+  navigateNext(): void {
+    if (this.swiper) {
+      this.swiper.slideNext();
     }
   }
 
+  navigatePrev(): void {
+    if (this.swiper) {
+      this.swiper.slidePrev();
+    }
+  }
+
+  goToProductsBtCategoryPage() {
+
+  }
 }

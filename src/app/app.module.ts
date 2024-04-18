@@ -26,7 +26,7 @@ import {NgSelectModule} from "@ng-select/ng-select";
     AppRoutingModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    NgSelectModule
+    NgSelectModule,
   ],
   providers: [
     provideClientHydration(),

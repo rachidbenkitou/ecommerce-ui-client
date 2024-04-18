@@ -1,50 +1,22 @@
-<!--<section class="categories container section">-->
-<!--  <div class="tab__btns center-element">-->
-<!--    <h3 class="section__title"><span>Popular</span> Categories</h3>-->
-<!--  </div>-->
+<section class="categories container section">
+  <div class="tab__btns center-element">
+    <h3 class="section__title"><span>Popular</span> Categories</h3>
+  </div>
 
+    <div class="categories__container swiper cursorPointer" (click)="goToProductsBtCategoryPage()">
+      <div class="swiper-wrapper">
+        <a class="category__item swiper-slide" *ngFor="let category of categoriesList">
+          <img [src]="'assets/img/' + category?.categoryImagePath" [alt]="category?.categoryImagePath"
+               class="category__img"/>
+          <h3 class="category__title">{{ category?.name }}</h3>
+        </a>
+      </div>
 
-<!--  <div class="categories__container swiper">-->
-<!--    <div class="swiper-wrapper">-->
-<!--      <a class="category__item swiper-slide" *ngFor="let category of categoriesList"-->
-<!--         (click)="handleCategoryClick(category?.id)">-->
-<!--        <img-->
-<!--          [src]="'assets/img/'+category?.categoryImagePath"-->
-<!--          [alt]="category?.categoryImagePath"-->
-<!--          class="category__img"-->
-<!--        />-->
-
-<!--        <h3 class="category__title">{{category?.name}}</h3>-->
-<!--      </a>-->
-<!--    </div>-->
-
-<!--    <div class="swiper-button-next">-->
-<!--      <i class="fi fi-rs-angle-right"></i>-->
-<!--    </div>-->
-<!--    <div class="swiper-button-prev">-->
-<!--      <i class="fi fi-rs-angle-left"></i>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</section>-->
-
-
-<!--<div class="card">-->
-<!--  <p-carousel [value]="categoriesList" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">-->
-<!--    <ng-template let-category pTemplate="item">-->
-<!--      <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">-->
-<!--        <div class="mb-3">-->
-<!--          <img [src]="'assets/img/'+category?.categoryImagePath" [alt]="category?.categoryImagePath" class="w-6 shadow-2" />-->
-<!--        </div>-->
-<!--        <div>-->
-<!--          <h4 class="mb-1">{{category?.name}}</h4>-->
-<!--          <h6 class="mt-0 mb-3">{{category?.name}}</h6>-->
-<!--          <p-tag [value]="category.inventoryStatus" [severity]="getSeverity(category.inventoryStatus)"></p-tag>-->
-<!--          <div class="mt-5 flex align-items-center justify-content-center gap-2">-->
-<!--            <p-button icon="pi pi-search" [rounded]="true" />-->
-<!--            <p-button icon="pi pi-star-fill" [rounded]="true" severity="secondary" />-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </ng-template>-->
-<!--  </p-carousel>-->
-<!--</div>-->
+      <div class="swiper-button-next" (click)="navigateNext()">
+        <i class="fi fi-rs-angle-right"></i>
+      </div>
+      <div class="swiper-button-prev" (click)="navigatePrev()">
+        <i class="fi fi-rs-angle-left"></i>
+      </div>
+    </div>
+</section>

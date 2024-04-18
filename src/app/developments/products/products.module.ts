@@ -7,10 +7,11 @@ import {ProductListComponent} from './components/product-list/product-list.compo
 import {SharedModule} from "../shared/shared.module";
 import {CategoriesModule} from "../categories/categories.module";
 import {CommonModule} from "@angular/common";
-import {PackageListComponent} from "../packages/components/package-list/package-list.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ProductsPageComponent} from "./components/products-page/products-page.component";
 import {NgSelectModule} from "@ng-select/ng-select";
+import {PackageModule} from "../packages/packages.module";
+import { ProductsPageByCategoryComponent } from './components/products-page-by-category/products-page-by-category.component';
 
 @NgModule({
   declarations: [
@@ -18,9 +19,9 @@ import {NgSelectModule} from "@ng-select/ng-select";
     ProductPageComponent,
     ProductsPageComponent,
     ProductListComponent,
-    PackageListComponent
+    ProductsPageByCategoryComponent,
   ],
-  exports: [],
+  exports: [ProductListComponent],
   imports: [
     RouterModule.forChild(ProductsRoutes),
     SharedModule,
@@ -29,6 +30,7 @@ import {NgSelectModule} from "@ng-select/ng-select";
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
+    PackageModule
   ]
 })
 export class ProductsModule {
