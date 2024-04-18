@@ -19,7 +19,8 @@
               <div class="col-md-5 center-item">
                 <div class="input-group number-spinner">
                   <button (click)="decrementQuantity(item)"><i class="fas fa-minus"></i></button>
-                  <input readonly type="number" min="1" class="form-control text-center" [(ngModel)]="item.quantity"
+                  <input readonly type="number" min="1" class="form-control text-center"
+                         [(ngModel)]="item.quantity"
                          style="margin: 12px; background-color: white">
                   <button (click)="incrementQuantity(item)"><i class="fas fa-plus"></i></button>
                 </div>
@@ -89,9 +90,7 @@
             </div>
 
 
-
           </div>
-
 
 
         </div>
@@ -99,9 +98,4 @@
     </div>
 
   </div>
-
-
-
-
-
 </section>

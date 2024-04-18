@@ -51,7 +51,7 @@
           <a href="compare.html" class="nav__link">Compare</a>
         </li>
 
-        <li class="nav__item">
+        <li class="nav__item cursorPointer">
           <a (click)="logout()" class="nav__link">Logout</a>
         </li>
       </ul>
@@ -80,6 +80,9 @@
         <span class="count">{{productCount}}</span>
       </a>
 
+      <a class="header__action-btn cursorPointer" *ngIf="isLoggedIn">
+        <img style="height: 30px; width: 30px" src="../../../../../../assets/img/profile.png" alt=""/>
+      </a>
       <div class="header__action-btn nav__toggle" id="nav-toggle" #navToggle>
         <img src="assets/img/menu-burger.svg" alt="">
       </div>

@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ProductsService} from "../../services/products.service";
 import {DomSanitizer} from "@angular/platform-browser";
 import {CartService} from "../../../cart/services/cart.service";
 import {WishlistService} from "../../../wishlist/wishlist.service";
+import {AuthService} from "../../../security/auth.service";
 
 @Component({
   selector: 'app-product-page',
@@ -14,20 +15,24 @@ export class ProductPageComponent implements OnInit {
   product: any; // Assuming product is of type any, adjust as per your actual data type
   productsList: any[] = [];
   productId!: number;
-  selectedQuantity: any = 0;
+  selectedQuantity: any = 1;
   selectedSize: number = 0;
   productHTMLContent: any;
+  isLoggedIn: boolean = false;
 
 
   constructor(private route: ActivatedRoute,
               private productService: ProductsService,
               private sanitizer: DomSanitizer,
               private cartService: CartService,
-              private wishlistService: WishlistService
+              private wishlistService: WishlistService,
+              private authService: AuthService,
+              private router: Router
   ) {
   }
 
   getProducts(categoryId?: number): void {
+    this.isLoggedIn = this.authService.isLoggedIn();
     this.productService.getProducts(0, 25, undefined, 'DESC', undefined, undefined, undefined, undefined, undefined, categoryId)
       .subscribe(response => {
         this.productsList = response;
@@ -64,8 +69,28 @@ export class ProductPageComponent implements OnInit {
 
       this.getProductById(this.productId);
     });
-
-
   }
+
+  placeProductOrder(product: any): void {
+    this.cartService.TakeOrder({
+      clientId: 1,
+      totalPrice: product.price,
+      clientOrderDetailsDtos: [{
+        productId: product?.id,
+        price: product?.price,
+        quantity: this.selectedQuantity
+      }]
+    });
+  }
+
+  navigateToSaleForm(productId: number) {
+    this.router.navigate(['cart/saleContactForm'], {
+      state: {
+        productId: productId,
+        selectedQuantity: this.selectedQuantity
+      }
+    });
+  }
+
 
 }

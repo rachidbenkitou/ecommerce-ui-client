@@ -34,11 +34,20 @@
 
 
         <div class="details__action">
-          <input type="number" class="quantity" [(ngModel)]="selectedQuantity"/>
+          <input min="1" value="1" type="number" class="quantity" [(ngModel)]="selectedQuantity"/>
           <a (click)="addToCart(product)" class="my-btn my-btn--sm cursorPointer">Add to Cart</a>
-          <a href="#" class="my-btn my-btn--sm cursorPointer">Buy now</a>
+
+          <a (click)="placeProductOrder(product)" class="my-btn my-btn--sm cursorPointer"
+             *ngIf="isLoggedIn else saleForm">Buy now</a>
+
+          <ng-template #saleForm>
+            <a (click)="navigateToSaleForm(product.id)" class="my-btn my-btn--sm cursorPointer">Buy now</a>
+          </ng-template>
+
           <a (click)="addToWishlist(product)" class="details__action-btn cursorPointer"><i
             class="fi fi-rs-heart"></i></a>
+
+
         </div>
       </div>
     </div>

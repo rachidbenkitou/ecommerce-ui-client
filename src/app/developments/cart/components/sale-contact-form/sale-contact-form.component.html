@@ -1,8 +1,8 @@
-<div id="formContact" class="container" style="width: 70%;" *ngIf="!isUserLoggedIn && cartSize !== 0">
+<div id="formContact" class="container" style="width: 70%;" *ngIf="!isUserLoggedIn">
   <div class="login">
     <h3 class="section__title">Vos informations personnelles</h3>
 
-    <form [formGroup]="saleForm" (ngSubmit)="onSubmit()" class="form grid">
+    <form [formGroup]="saleForm" (ngSubmit)="onSubmit(saleForm.value)" class="form grid">
       <input
         type="text"
         placeholder="Full Name"
@@ -32,7 +32,7 @@
       />
 
       <div class="form__btn">
-        <button type="submit" class="btn">Submit</button>
+        <button type="submit" class="my-btn">Submit</button>
       </div>
     </form>
   </div>

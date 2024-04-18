@@ -85,7 +85,7 @@ export class CartComponent implements OnInit {
   }
 
   placeOrder(): void {
-    const orderData = {
+    this.cartService.TakeOrder({
       clientId: 1,
       totalPrice: this.totalPrice,
       clientOrderDetailsDtos: this.cart.map((product: { id: any; price: any; quantity: any; }) => ({
@@ -93,25 +93,7 @@ export class CartComponent implements OnInit {
         price: product?.price,
         quantity: product.quantity
       }))
-    };
-
-    this.cartService.placeOrder(orderData).subscribe(
-      response => {
-        // Handle successful response here
-        console.log('Order placed successfully:', response);
-        // Clean the local storage cart
-        this.cart = [];
-        localStorage.removeItem('cart');
-        this.productService.incrementProductCount();
-        this.router.navigate(["products/homePage"])
-        this.toastr.success('Your order has been sent successfully!', 'Success!');
-      },
-      error => {
-        // Handle error response here
-        console.error('Error placing order:', error);
-      }
-    );
-
+    });
   }
 
 

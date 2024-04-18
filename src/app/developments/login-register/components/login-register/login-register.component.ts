@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../security/auth.service";
+import {environment} from "../../../../../environements/environement";
 
 @Component({
   selector: 'app-login-register',
@@ -24,6 +25,8 @@ export class LoginRegisterComponent {
     const {username, password} = this.loginForm.value;
 
     this.authService.LoginWithoutBackend();
+    window.location.href = `${environment.angularUrl}/products/homePage`;
+
     // this.authService.login(username, password).subscribe(response => {
     //   console.log('Logged in successfully!', response);
     //   //this.loginForm.reset();

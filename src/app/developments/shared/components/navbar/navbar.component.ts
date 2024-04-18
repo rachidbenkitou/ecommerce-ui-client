@@ -17,12 +17,14 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   productCount: number = 0;
   wishlistProductCount: number = 0;
+  isLoggedIn: boolean = false;
 
   constructor(
     private productService: ProductsService,
     private authService: AuthService,
     private router: Router,
   ) {
+    this.isLoggedIn = this.authService.isLoggedIn();
     this.productService.productCount$.subscribe(count => {
       this.productCount = count;
       // Update cart component or perform any other actions
@@ -40,7 +42,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   gotToHome() {
     window.location.href = `${environment.angularUrl}/products/homePage`;
-
   }
 
   ngOnInit(): void {
@@ -57,6 +58,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     //   //this.loginForm.reset();
     // })
     this.authService.LogoutWithoutBackend()
+    window.location.href = `${environment.angularUrl}/products/homePage`;
   }
 
   ngAfterViewInit(): void {
@@ -70,9 +72,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
   }
 
-    goToPackagesPage() {
-      // Navigate to the '/packages' route
-      this.router.navigate(['/packages']);
-    }
+  goToPackagesPage() {
+    // Navigate to the '/packages' route
+    this.router.navigate(['/packages']);
+  }
 
 }
