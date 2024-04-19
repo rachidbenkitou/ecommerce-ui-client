@@ -10,11 +10,9 @@ const routes: Routes = [
     component: LayoutComponent,
 
     children: [
-      {path: '', redirectTo: '/products', pathMatch: 'full'},
+      {path: '', redirectTo: 'products', pathMatch: 'full'},
 
       {
-        // canActivate: [AuthGuard],
-        // data: {roles: ['client_admin']},
         path: 'products',
         loadChildren: () => import('./developments/products/products.module').then(m => m.ProductsModule)
       },
@@ -25,8 +23,6 @@ const routes: Routes = [
         loadChildren: () => import('./developments/packages/packages.module').then(m => m.PackageModule)
       },
       {
-        // canActivate: [AuthGuard],
-        // data: {roles: ['client_admin']},
         path: 'categories',
         loadChildren: () => import('./developments/categories/categories.module').then(m => m.CategoriesModule)
       },

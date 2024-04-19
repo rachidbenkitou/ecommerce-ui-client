@@ -5,13 +5,14 @@ import {ProductPageComponent} from './components/product-page/product-page.compo
 import {ProductsRoutes} from "./products-routing.module";
 import {ProductListComponent} from './components/product-list/product-list.component';
 import {SharedModule} from "../shared/shared.module";
-import {CategoriesModule} from "../categories/categories.module";
 import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ProductsPageComponent} from "./components/products-page/products-page.component";
 import {NgSelectModule} from "@ng-select/ng-select";
-import {PackageModule} from "../packages/packages.module";
-import { ProductsPageByCategoryComponent } from './components/products-page-by-category/products-page-by-category.component';
+import {
+  ProductsPageByCategoryComponent
+} from './components/products-page-by-category/products-page-by-category.component';
+import {CategoriesListComponent} from "../categories/components/categories-list/categories-list.component";
 
 @NgModule({
   declarations: [
@@ -20,17 +21,18 @@ import { ProductsPageByCategoryComponent } from './components/products-page-by-c
     ProductsPageComponent,
     ProductListComponent,
     ProductsPageByCategoryComponent,
+    CategoriesListComponent
   ],
   exports: [ProductListComponent],
   imports: [
     RouterModule.forChild(ProductsRoutes),
     SharedModule,
-    CategoriesModule,
+    // CategoriesModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
-    PackageModule
+    // PackageModule,
   ]
 })
 export class ProductsModule {

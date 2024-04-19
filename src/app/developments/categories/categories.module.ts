@@ -8,8 +8,8 @@ import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
-    CategoriesListComponent,
-    CategoriesPageComponent
+    CategoriesPageComponent,
+    CategoriesListComponent
   ],
   exports: [
     CategoriesListComponent

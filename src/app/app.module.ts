@@ -12,7 +12,8 @@ import {BrowserAnimationsModule, provideAnimations} from "@angular/platform-brow
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {TokenInterceptorService} from "./developments/security/token-intercepter.service";
 import {NgSelectModule} from "@ng-select/ng-select";
-import {AutocompleteLibModule} from "angular-ng-autocomplete";
+import {ReactiveFormsModule} from "@angular/forms";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import {AutocompleteLibModule} from "angular-ng-autocomplete";
     HttpClientModule,
     ToastrModule.forRoot(),
     NgSelectModule,
-    AutocompleteLibModule
+    ReactiveFormsModule
   ],
   providers: [
     provideClientHydration(),
