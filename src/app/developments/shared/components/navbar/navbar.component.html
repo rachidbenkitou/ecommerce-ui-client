@@ -12,7 +12,7 @@
         Super Value Deals - Save more with coupons
       </p>
 
-      <a class="header__top-action" (click)="loginRegisterPage()">
+      <a class="header__top-action cursorPointer" (click)="loginRegisterPage()">
         Log In / Sign Up
       </a>
     </div>
@@ -40,7 +40,7 @@
         </li>
 
         <li class="nav__item">
-          <a href="shop.html" class="nav__link">Categories</a>
+          <a routerLink="/categories" class="nav__link">Categories</a>
         </li>
 
         <li class="nav__item">
@@ -48,11 +48,11 @@
         </li>
 
         <li class="nav__item">
-          <a href="compare.html" class="nav__link">Compare</a>
+          <a  routerLink="/products/allProducts" class="nav__link">Products</a>
         </li>
 
         <li class="nav__item cursorPointer">
-          <a (click)="logout()" class="nav__link">Logout</a>
+          <a (click)="loginRegisterPage()" class="nav__link">LogIn / SignUp</a>
         </li>
       </ul>
 
@@ -80,7 +80,7 @@
         <span class="count">{{productCount}}</span>
       </a>
 
-      <a class="header__action-btn cursorPointer" *ngIf="isLoggedIn">
+      <a routerLink="/profile" class="header__action-btn cursorPointer" *ngIf="isLoggedIn">
         <img style="height: 30px; width: 30px" src="../../../../../../assets/img/profile.png" alt=""/>
       </a>
       <div class="header__action-btn nav__toggle" id="nav-toggle" #navToggle>

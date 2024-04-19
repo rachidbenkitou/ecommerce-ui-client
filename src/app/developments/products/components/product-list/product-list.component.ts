@@ -3,7 +3,7 @@ import {ProductsService} from "../../services/products.service";
 import {ToastrService} from "ngx-toastr";
 import {CartService} from "../../../cart/services/cart.service";
 import {Router} from "@angular/router";
-import {WishlistService} from "../../../wishlist/wishlist.service";
+import {WishlistService} from "../../../wishlist/services/wishlist.service";
 
 
 @Component({

@@ -49,6 +49,11 @@ const routes: Routes = [
         // canActivate: [AuthGuard],
         loadChildren: () => import('./developments/wishlist/wishlist.module').then(m => m.WishlistModule)
       },
+      {
+        path: 'profile',
+        // canActivate: [AuthGuard],
+        loadChildren: () => import('./developments/client-account/client-account.module').then(m => m.ClientAccountModule)
+      },
     ]
   },
   {

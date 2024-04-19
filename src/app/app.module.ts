@@ -12,13 +12,14 @@ import {BrowserAnimationsModule, provideAnimations} from "@angular/platform-brow
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {TokenInterceptorService} from "./developments/security/token-intercepter.service";
 import {NgSelectModule} from "@ng-select/ng-select";
+import {AutocompleteLibModule} from "angular-ng-autocomplete";
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,6 +28,7 @@ import {NgSelectModule} from "@ng-select/ng-select";
     HttpClientModule,
     ToastrModule.forRoot(),
     NgSelectModule,
+    AutocompleteLibModule
   ],
   providers: [
     provideClientHydration(),

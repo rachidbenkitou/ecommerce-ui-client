@@ -2,11 +2,26 @@
 
   <app-alert *ngIf="cartSize===0" [message]="'The Cart is Empty!'"></app-alert>
 
-  <div class="my-table__container" *ngIf="cartSize !== 0" style="margin-top: 10px">
-
+  <div class="my-table__container" *ngIf="cartSize !== 0">
     <div class="container">
       <div class="cart">
         <div class="col-md-12 col-lg-10 mx-auto">
+
+          <div class="cart__actions d-flex justify-content-center" style="margin-bottom: 10px">
+            <!-- Check if user is logged in -->
+            <ng-container *ngIf="isUserLoggedIn && cartSize!==0;">
+              <button (click)="placeOrder()" class="my-btn flex my-btn--md">
+                <i class="fi-rs-shopping-bag"></i> Send the Order
+              </button>
+            </ng-container>
+
+            <!-- Popup form for users who are not logged in -->
+            <ng-container *ngIf="!isUserLoggedIn && cartSize!==0;">
+              <button (click)="goToSaleContactForm()" class="my-btn flex my-btn--md">
+                <i class="fi-rs-shopping-bag"></i> Fill your contacts
+              </button>
+            </ng-container>
+          </div>
 
           <div *ngFor="let item of cart" class="cart-item">
             <div class="row">
@@ -14,7 +29,7 @@
                 <img [src]="'assets/img/'+item?.productImagePath"
                      [alt]="item?.productImagePath">
 
-                <h5>{{ item.name }} ( ${{ item.price }} )</h5>
+                <h5>{{ item.name }}<br> ( {{ item.price }} MAD )</h5>
               </div>
               <div class="col-md-5 center-item">
                 <div class="input-group number-spinner">
@@ -24,7 +39,7 @@
                          style="margin: 12px; background-color: white">
                   <button (click)="incrementQuantity(item)"><i class="fas fa-plus"></i></button>
                 </div>
-                <h5>$ <span>{{ item.price * item.quantity }}</span></h5>
+                <h5> <span>{{ item.price * item.quantity }} MAD</span></h5>
                 <i (click)="deleteItem(item.id)" class="fa-solid fa-trash cursorPointer"></i>
               </div>
             </div>
@@ -38,9 +53,9 @@
                 <h5>Total:</h5>
               </div>
               <div class="col-6 status">
-                <h5>$<span id="sub-total">{{totalPrice}} MAD</span></h5>
+                <h5><span id="sub-total">{{totalPrice}} MAD</span></h5>
                 <h5><span id="tax-amount">0 MAD</span></h5>
-                <h5>$<span id="total-price">{{totalPrice}} MAD</span></h5>
+                <h5><span id="total-price">{{totalPrice}} MAD</span></h5>
               </div>
             </div>
           </div>

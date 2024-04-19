@@ -8,6 +8,7 @@ import {CartService} from "../../../cart/services/cart.service";
   styleUrl: './wishlist.component.scss'
 })
 export class WishlistComponent {
+
   wishlist: any;
   wishlistSize: number = 0;
 

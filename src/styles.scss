@@ -118,7 +118,7 @@ input {
   outline: none;
 }
 
-my-table {
+table {
   width: 100%;
   border-collapse: collapse;
 }
@@ -274,10 +274,13 @@ my-table {
 
 .header__action-btn {
   position: relative;
+  cursor: pointer;
+
 }
 
 .header__action-btn img {
   width: 24px;
+  cursor: pointer;
 }
 
 .header__action-btn .count {
@@ -297,6 +300,8 @@ my-table {
 .nav__menu-top,
 .nav__toggle {
   display: none;
+  cursor: pointer;
+
 }
 
 /* Active link */
@@ -1946,4 +1951,3 @@ my-table {
 .cursorPointer {
   cursor: pointer;
 }
-

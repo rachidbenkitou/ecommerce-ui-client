@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ProductsService} from "../../services/products.service";
 import {DomSanitizer} from "@angular/platform-browser";
 import {CartService} from "../../../cart/services/cart.service";
-import {WishlistService} from "../../../wishlist/wishlist.service";
+import {WishlistService} from "../../../wishlist/services/wishlist.service";
 import {AuthService} from "../../../security/auth.service";
 
 @Component({

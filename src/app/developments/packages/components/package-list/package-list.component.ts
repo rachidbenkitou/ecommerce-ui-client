@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ToastrService} from "ngx-toastr";
 import {CartService} from "../../../cart/services/cart.service";
-import {WishlistService} from "../../../wishlist/wishlist.service";
 import {Router} from "@angular/router";
 import {PackageService} from "../../services/packages.service";
+import {WishlistService} from "../../../wishlist/services/wishlist.service";
 
 @Component({
   selector: 'app-package-list',
