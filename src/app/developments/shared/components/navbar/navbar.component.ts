@@ -3,6 +3,7 @@ import {ProductsService} from "../../../products/services/products.service";
 import {Router} from '@angular/router';
 import {AuthService} from "../../../security/auth.service";
 import {environment} from "../../../../../environements/environement";
+import {CategoriesService} from "../../../categories/services/categories.service";
 
 @Component({
   selector: 'app-navbar',
@@ -18,9 +19,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   productCount: number = 0;
   wishlistProductCount: number = 0;
   isLoggedIn: boolean = false;
+  categoriesList: any[] = [];
+
 
   constructor(
     private productService: ProductsService,
+    private categoryService: CategoriesService,
     private authService: AuthService,
     private router: Router,
   ) {
@@ -40,12 +44,20 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   }
 
+
+  getCategories(): void {
+    this.categoryService.getCategories().subscribe(response => {
+      this.categoriesList = response;
+    })
+  }
+
   gotToHome() {
     window.location.href = `${environment.angularUrl}/products/homePage`;
   }
 
   ngOnInit(): void {
     //this.productService.incrementProductCount();
+    this.getCategories();
   }
 
   loginRegisterPage() {
@@ -77,4 +89,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/packages']);
   }
 
+  searchProductByCategory($event: any) {
+    this.router.navigate([`products/category/${$event.id}`])
+
+  }
 }

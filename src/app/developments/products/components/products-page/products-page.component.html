@@ -4,11 +4,13 @@
       <form [formGroup]="searchForm" (ngSubmit)="search()">
         <div class="input-container">
           <input placeholder="Ex. Product Name" class="simpleInputCustomization" formControlName="name">
-          <ng-select [items]="sortingOptions" bindLabel="name" bindValue="id" placeholder="Ex. Category"
+          <ng-select [items]="categoriesList" bindLabel="name" bindValue="id" placeholder="Ex. Category"
                      formControlName="categoryId" class="custom-select"></ng-select>
           <ng-select [items]="sortingOptions" bindLabel="name" bindValue="value" placeholder="Ex. Sorting by Price"
                      formControlName="sortingByField" class="custom-select"></ng-select>
           <button type="submit" class="btn btn-success cursorPointer"><i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <button type="reset" (click)="relaod()" class="btn btn-success cursorPointer"><i class="fa-solid fa-rotate-right"></i>
           </button>
         </div>
       </form>

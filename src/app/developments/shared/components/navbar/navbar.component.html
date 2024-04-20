@@ -48,7 +48,7 @@
         </li>
 
         <li class="nav__item">
-          <a  routerLink="/products/allProducts" class="nav__link">Products</a>
+          <a routerLink="/products/allProducts" class="nav__link">Products</a>
         </li>
 
         <li class="nav__item cursorPointer">
@@ -57,11 +57,9 @@
       </ul>
 
       <div class="header__search">
-        <ng-select  bindLabel="name" bindValue="id" placeholder="Search for items..."
-                    class="custom-select"></ng-select>
-        <button class="search__btn">
-          <img src="../../../../../../assets/img/search.png" alt=""/>
-        </button>
+        <ng-select (change)="searchProductByCategory($event)" [items]="categoriesList" bindLabel="name" bindValue="id"
+                   placeholder="Search by category..."
+                   class="custom-select"></ng-select>
       </div>
     </div>
 

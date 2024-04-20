@@ -27,7 +27,9 @@ export class CartService {
       return this.http.post<any>(`${this.url}sales`, OrderData);
     }
   }
-
+  placePackageOrder(OrderData: any): Observable<any> {
+      return this.http.post<any>(`${this.url}clientOrders/package`, OrderData);
+  }
   addToCart(product: any) {
     product.quantity = 1
     let cart = JSON.parse(localStorage.getItem('cart') || '[]');

@@ -27,7 +27,7 @@ export class PackagesPageComponent implements OnInit {
   }
 
   getPackages(packageName?: string, sortingByField?: string, packageId?: number): void {
-    this.packagesService.getPackages(0, 25, sortingByField, 'DESC', packageId, packageName, undefined, undefined)
+    this.packagesService.getPackages(0, 25, sortingByField, 'ASC', packageId, packageName, undefined, undefined)
       .subscribe(response => {
         this.packagesList = response;
       });
@@ -52,4 +52,8 @@ export class PackagesPageComponent implements OnInit {
   ];
 
 
+  relaod() {
+    this.searchForm.reset()
+    this.getPackages();
+  }
 }

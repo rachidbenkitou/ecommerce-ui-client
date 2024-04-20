@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ProductsService} from "../../services/products.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {CategoriesService} from "../../../categories/services/categories.service";
 
 @Component({
   selector: 'app-products-page',
@@ -10,10 +11,16 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 export class ProductsPageComponent implements OnInit {
 
   @Input() productsList: any[] = [];
+  categoriesList: any [] = [];
+  sortingOptions = [
+    {name: 'Price', value: 'price'},
+    {name: 'Quantity', value: 'quantity'},
+    {name: 'Latest Added', value: 'dateCreated'}
+  ];
   searchForm: FormGroup = new FormGroup({}); // Define searchForm of type FormGroup
 
-
   constructor(private productService: ProductsService,
+              private categoryService: CategoriesService,
               private formBuilder: FormBuilder // Inject FormBuilder
   ) {
   }
@@ -34,6 +41,13 @@ export class ProductsPageComponent implements OnInit {
       });
   }
 
+  getCategories(): void {
+    this.categoryService.getCategories()
+      .subscribe(response => {
+        this.categoriesList = response;
+      });
+  }
+
   search(): void {
     const formData = this.searchForm.value;
     const sortedBy = formData.sortingByField ?? 'id';
@@ -43,14 +57,14 @@ export class ProductsPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
+    this.getCategories();
     this.createForm(); // Call createForm method when component initializes
   }
 
-  sortingOptions = [
-    {name: 'Price', value: 'price'},
-    {name: 'Quantity', value: 'quantity'},
-    {name: 'Latest Added', value: 'dateCreated'}
-  ];
+  relaod() {
+    this.searchForm.reset()
+    this.getProducts();
+  }
 
 
 }

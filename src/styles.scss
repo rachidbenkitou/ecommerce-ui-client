@@ -1108,6 +1108,16 @@ table {
   padding-inline: 1rem 0.5rem;
   border-radius: 0.25rem;
 }
+.quantity1 {
+  max-width: 150px;
+  padding-block: 0.5rem;
+  padding-inline: 1rem 0.5rem;
+  border-radius: 0.25rem;
+
+  border: 1px solid var(--border-color-alt);
+  font-size: var(--small-font-size);
+  font-weight:bolder;
+}
 
 .details__action-btn {
   color: var(--text-color);

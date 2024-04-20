@@ -12,7 +12,6 @@ import {NgSelectModule} from "@ng-select/ng-select";
 import {
   ProductsPageByCategoryComponent
 } from './components/products-page-by-category/products-page-by-category.component';
-import {CategoriesListComponent} from "../categories/components/categories-list/categories-list.component";
 
 @NgModule({
   declarations: [
@@ -21,18 +20,15 @@ import {CategoriesListComponent} from "../categories/components/categories-list/
     ProductsPageComponent,
     ProductListComponent,
     ProductsPageByCategoryComponent,
-    CategoriesListComponent
   ],
-  exports: [ProductListComponent],
+  exports: [],
   imports: [
     RouterModule.forChild(ProductsRoutes),
     SharedModule,
-    // CategoriesModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
-    // PackageModule,
   ]
 })
 export class ProductsModule {

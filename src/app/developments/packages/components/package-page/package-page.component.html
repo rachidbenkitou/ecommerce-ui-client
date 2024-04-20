@@ -5,11 +5,11 @@
       <div class="details__group">
         <img [src]="'assets/img/' + package.packageImagePath" [alt]="package.name" class="details__img"/>
 
-        <div class="details__small-images grid">
-          <!-- Loop through productImages if available -->
-          <img *ngFor="let image of package.packageImagePath" [src]="'assets/img/' + image" [alt]="package.name"
-               class="details__small-img"/>
-        </div>
+        <!--        <div class="details__small-images grid">-->
+        <!--          &lt;!&ndash; Loop through productImages if available &ndash;&gt;-->
+        <!--          <img *ngFor="let image of package.packageImagePath" [src]="'assets/img/' + image" [alt]="package.name"-->
+        <!--               class="details__small-img"/>-->
+        <!--        </div>-->
       </div>
 
       <div class="details__group">
@@ -23,22 +23,25 @@
           <span class="save__price">25% Off</span>
         </div>
 
-        <p class="short__description">{{ package.description }}</p>
+        <p class="short__description">{{ package?.description }}</p>
 
-        <ul class="product__list">
-          <!-- Loop through product meta information -->
-          <li class="list__item flex" *ngFor="let meta of package.meta">
-            <i class="{{ meta.icon }}"></i> {{ meta.text }}
-          </li>
-        </ul>
+        <!--        <ul class="product__list">-->
+        <!--          &lt;!&ndash; Loop through product meta information &ndash;&gt;-->
+        <!--          <li class="list__item flex" *ngFor="let meta of package.meta">-->
+        <!--            <i class="{{ meta.icon }}"></i> {{ meta.text }}-->
+        <!--          </li>-->
+        <!--        </ul>-->
 
 
         <div class="details__action">
           <input type="number" class="quantity" [(ngModel)]="selectedQuantity"/>
-<!--          <a  class="my-btn my-btn&#45;&#45;sm cursorPointer">Add to Cart</a>-->
+
+          <input type="text" readonly [value]="selectedQuantity*package.price+' MAD'" class="quantity1"/>
+          <!--          <a  class="my-btn my-btn&#45;&#45;sm cursorPointer">Add to Cart</a>-->
           <a (click)="placeOrder(package)" class="my-btn my-btn--sm cursorPointer">Buy now</a>
-<!--          <a  class="details__action-btn cursorPointer"><i-->
-<!--            class="fi fi-rs-heart"></i></a>-->
+
+          <!--          <a  class="details__action-btn cursorPointer"><i-->
+          <!--            class="fi fi-rs-heart"></i></a>-->
         </div>
 
       </div>
