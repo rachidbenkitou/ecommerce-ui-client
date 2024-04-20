@@ -6,7 +6,7 @@
     <div class="categories__container swiper " >
       <div class="swiper-wrapper">
         <a class="category__item swiper-slide" *ngFor="let category of categoriesList">
-          <img (click)="goToProductsBtCategoryPage(category.id)" [src]="'assets/img/' + category?.categoryImagePath" [alt]="category?.categoryImagePath"
+          <img (click)="goToProductsByCategoryPage(category.id)" [src]="'assets/img/' + category?.categoryImagePath" [alt]="category?.categoryImagePath"
                class="category__img cursorPointer"/>
           <h3 class="category__title">{{ category?.name }}</h3>
         </a>

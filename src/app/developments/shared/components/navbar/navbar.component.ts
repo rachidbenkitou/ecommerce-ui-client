@@ -4,6 +4,8 @@ import {Router} from '@angular/router';
 import {AuthService} from "../../../security/auth.service";
 import {environment} from "../../../../../environements/environement";
 import {CategoriesService} from "../../../categories/services/categories.service";
+import {ToastrConfigHelper} from "../../models/toastr-config-helper";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-navbar',
@@ -17,6 +19,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   @ViewChild('navClose') navClose!: ElementRef;
 
   productCount: number = 0;
+  productName: string = '';
   wishlistProductCount: number = 0;
   isLoggedIn: boolean = false;
   categoriesList: any[] = [];
@@ -27,6 +30,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     private categoryService: CategoriesService,
     private authService: AuthService,
     private router: Router,
+    private toastr: ToastrService,
   ) {
     this.isLoggedIn = this.authService.isLoggedIn();
     this.productService.productCount$.subscribe(count => {
@@ -46,6 +50,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
 
   getCategories(): void {
+    this.categoryService.getCategories().subscribe(response => {
+      this.categoriesList = response;
+    })
+  }
+
+  getProductsByName(): void {
     this.categoryService.getCategories().subscribe(response => {
       this.categoriesList = response;
     })
@@ -92,5 +102,25 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   searchProductByCategory($event: any) {
     this.router.navigate([`products/category/${$event.id}`])
 
+  }
+
+  SearchProductsByName() {
+    const currentRoute = this.router.url;
+    // Define the navigation extras with state
+    const navigationExtras = {
+      state: {
+        name: this.productName
+      }
+    };
+
+    // Check if the current route is the destination route
+    if (currentRoute === '/products/allProducts') {
+      this.toastr.info('Make the search in the form below!', 'Info!', ToastrConfigHelper.getCustomConfig());
+
+    } else {
+      // Navigate to the products page with the category id in the state
+      this.router.navigate(['/products/allProducts'], navigationExtras);
+    }
+    this.productName = '';
   }
 }

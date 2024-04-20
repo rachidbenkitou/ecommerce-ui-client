@@ -2,9 +2,6 @@ import {Routes} from "@angular/router";
 import {ProductLandingPageComponent} from "./components/product-landing-page/product-landing-page.component";
 import {ProductsPageComponent} from "./components/products-page/products-page.component";
 import {ProductPageComponent} from "./components/product-page/product-page.component";
-import {
-  ProductsPageByCategoryComponent
-} from "./components/products-page-by-category/products-page-by-category.component";
 
 export const ProductsRoutes: Routes = [
   {
@@ -23,9 +20,5 @@ export const ProductsRoutes: Routes = [
   {
     path: 'singleProduct/:id',
     component: ProductPageComponent,
-  },
-  {
-    path: 'category/:categoryId',
-    component: ProductsPageByCategoryComponent,
   },
 ];

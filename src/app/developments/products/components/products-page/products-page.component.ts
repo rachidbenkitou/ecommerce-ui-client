@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ProductsService} from "../../services/products.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {CategoriesService} from "../../../categories/services/categories.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-products-page',
@@ -12,6 +13,7 @@ export class ProductsPageComponent implements OnInit {
 
   @Input() productsList: any[] = [];
   categoriesList: any [] = [];
+  categoryId!: number;
   sortingOptions = [
     {name: 'Price', value: 'price'},
     {name: 'Quantity', value: 'quantity'},
@@ -21,7 +23,8 @@ export class ProductsPageComponent implements OnInit {
 
   constructor(private productService: ProductsService,
               private categoryService: CategoriesService,
-              private formBuilder: FormBuilder // Inject FormBuilder
+              private formBuilder: FormBuilder,
+              private router: Router
   ) {
   }
 
@@ -34,17 +37,17 @@ export class ProductsPageComponent implements OnInit {
     });
   }
 
-  getProducts(productName?: string, sortingByField?: string, categoryId?: number): void {
-    this.productService.getProducts(0, 25, sortingByField, 'DESC', undefined, productName, undefined, undefined, undefined, categoryId)
-      .subscribe(response => {
-        this.productsList = response;
-      });
-  }
-
   getCategories(): void {
     this.categoryService.getCategories()
       .subscribe(response => {
         this.categoriesList = response;
+      });
+  }
+
+  getProducts(productName?: string, sortingByField?: string, categoryId?: number): void {
+    this.productService.getProducts(0, 25, sortingByField, 'DESC', undefined, productName, undefined, undefined, undefined, categoryId)
+      .subscribe(response => {
+        this.productsList = response;
       });
   }
 
@@ -54,9 +57,24 @@ export class ProductsPageComponent implements OnInit {
     this.getProducts(formData.name, sortedBy, formData.categoryId);
   }
 
+  getProductsByCategoryId() {
+    this.getProducts(undefined, undefined, this.categoryId);
+  }
+
+  getProductsByCategoryName(productName: string) {
+    this.getProducts(productName);
+  }
 
   ngOnInit(): void {
-    this.getProducts();
+    const navigationState = window.history.state;
+    if (navigationState && navigationState.categoryId) {
+      this.categoryId = navigationState.categoryId;
+      this.getProductsByCategoryId();
+    } else if (navigationState && navigationState.productName) {
+      this.getProductsByCategoryName(navigationState.productName);
+    } else {
+      this.getProducts();
+    }
     this.getCategories();
     this.createForm(); // Call createForm method when component initializes
   }

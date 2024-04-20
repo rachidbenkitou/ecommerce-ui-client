@@ -12,7 +12,7 @@ import {BrowserAnimationsModule, provideAnimations} from "@angular/platform-brow
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {TokenInterceptorService} from "./developments/security/token-intercepter.service";
 import {NgSelectModule} from "@ng-select/ng-select";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 
 @NgModule({
@@ -29,7 +29,8 @@ import {RouterModule} from "@angular/router";
     HttpClientModule,
     ToastrModule.forRoot(),
     NgSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     provideClientHydration(),

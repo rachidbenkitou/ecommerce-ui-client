@@ -42,8 +42,15 @@ export class CategoriesListComponent implements OnInit {
     }
   }
 
-  goToProductsBtCategoryPage(id: number) {
+  goToProductsByCategoryPage(id: number) {
+    // Define the navigation extras with state
+    const navigationExtras = {
+      state: {
+        categoryId: id
+      }
+    };
 
-    this.router.navigate([`/products/category/${id}`])
+    // Navigate to the products page with the category id in the state
+    this.router.navigate(['/products/allProducts'], navigationExtras);
   }
 }

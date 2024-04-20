@@ -9,9 +9,6 @@ import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ProductsPageComponent} from "./components/products-page/products-page.component";
 import {NgSelectModule} from "@ng-select/ng-select";
-import {
-  ProductsPageByCategoryComponent
-} from './components/products-page-by-category/products-page-by-category.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +16,6 @@ import {
     ProductPageComponent,
     ProductsPageComponent,
     ProductListComponent,
-    ProductsPageByCategoryComponent,
   ],
   exports: [],
   imports: [
