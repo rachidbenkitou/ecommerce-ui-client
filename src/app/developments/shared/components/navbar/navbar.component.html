@@ -57,7 +57,7 @@
       </ul>
       <div class="header__search">
         <input
-          (change)="SearchProductsByName()"
+          (keydown.enter)="SearchProductsByName()"
           [(ngModel)]="productName"
           type="text"
           placeholder="Search for items..."
@@ -68,11 +68,11 @@
           <img src="../../../../../../assets/img/search.png" alt=""/>
         </button>
       </div>
-<!--      <div class="header__search">-->
-<!--        <ng-select (change)="searchProductByCategory($event)" [items]="categoriesList" bindLabel="name" bindValue="id"-->
-<!--                   placeholder="Search by category..."-->
-<!--                   class="custom-select"></ng-select>-->
-<!--      </div>-->
+      <!--      <div class="header__search">-->
+      <!--        <ng-select (change)="searchProductByCategory($event)" [items]="categoriesList" bindLabel="name" bindValue="id"-->
+      <!--                   placeholder="Search by category..."-->
+      <!--                   class="custom-select"></ng-select>-->
+      <!--      </div>-->
     </div>
 
     <div class="header__user-actions">
