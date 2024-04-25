@@ -23,10 +23,9 @@ export class ClientAccountComponent implements OnInit {
 
   logout() {
     this.authService.logout().subscribe(response => {
-      console.log(response);
       this.authService.clearTokens();
       localStorage.removeItem('activeTab')
-      // window.location.href = `${environment.angularUrl}/products/homePage`;
+      window.location.href = `${environment.angularUrl}/products/homePage`;
     })
   }
 
