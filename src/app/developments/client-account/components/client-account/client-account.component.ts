@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../../security/auth.service";
 import {environment} from "../../../../../environements/environement";
-import {NavigationEnd, Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-client-account',
@@ -22,9 +22,12 @@ export class ClientAccountComponent implements OnInit {
   }
 
   logout() {
-    this.authService.LogoutWithoutBackend()
-    localStorage.removeItem('activeTab')
-    window.location.href = `${environment.angularUrl}/products/homePage`;
+    this.authService.logout().subscribe(response => {
+      console.log(response);
+      this.authService.clearTokens();
+      localStorage.removeItem('activeTab')
+      // window.location.href = `${environment.angularUrl}/products/homePage`;
+    })
   }
 
   ngOnInit(): void {

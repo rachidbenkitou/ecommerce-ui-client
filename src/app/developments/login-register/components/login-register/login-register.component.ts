@@ -24,13 +24,14 @@ export class LoginRegisterComponent {
   login(): void {
     const {username, password} = this.loginForm.value;
 
-    this.authService.LoginWithoutBackend();
-    window.location.href = `${environment.angularUrl}/products/homePage`;
+    // this.authService.LoginWithoutBackend();
+    // window.location.href = `${environment.angularUrl}/products/homePage`;
 
-    // this.authService.login(username, password).subscribe(response => {
-    //   console.log('Logged in successfully!', response);
-    //   //this.loginForm.reset();
-    // })
+    this.authService.login(username, password).subscribe(response => {
+      this.authService.storeTokens(response.accessToken, response.refreshToken);
+      window.location.href = `${environment.angularUrl}/products/homePage`;
+      //this.loginForm.reset();
+    })
   }
 
 }

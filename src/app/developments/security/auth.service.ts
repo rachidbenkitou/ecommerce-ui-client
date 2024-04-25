@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {catchError, map, switchMap} from 'rxjs/operators';
 import {environment} from "../../../environements/environement";
 
 @Injectable({
@@ -28,15 +27,7 @@ export class AuthService {
     const hasAccessToken = !!this.getAccessToken();
     const hasRefreshToken = !!this.getRefreshToken();
 
-    if (hasAccessToken && hasRefreshToken) {
-      // If both tokens are present, initiate logout first
-      return this.logout().pipe(
-        switchMap(() => this.doLogin(username, password))
-      );
-    } else {
-      // If any token is missing or both are missing, proceed with normal login
-      return this.doLogin(username, password);
-    }
+    return this.doLogin(username, password);
   }
 
   private doLogin(username: string, password: string): Observable<any> {
@@ -44,23 +35,15 @@ export class AuthService {
       username,
       password,
       grant_type: environment.grant_type,
-      client_id: environment.client_id
+      client_id: environment.client_id,
+      client_secret: environment.client_secret
     });
 
     const options = {
       headers: this.buildHeaders()
     };
 
-    return this.http.post<any>(`${this.apiUrl}/login`, body, options).pipe(
-      map(response => {
-        this.storeTokens(response.accessToken, response.refreshToken);
-        return response;
-      }),
-      catchError(error => {
-        console.error('Error logging in:', error);
-        throw error;
-      })
-    );
+    return this.http.post<any>(`${this.apiUrl}/login`, body, options);
   }
 
   logout(): Observable<any> {
@@ -73,23 +56,16 @@ export class AuthService {
 
     const body = this.buildFormUrlEncodedBody({
       refresh_token: refreshToken,
-      client_id: environment.client_id
+      client_id: environment.client_id,
+      client_secret: environment.client_secret
+
     });
 
     const options = {
       headers: this.buildHeaders()
     };
 
-    return this.http.post<any>(`${this.apiUrl}/logout`, body, options).pipe(
-      map(() => {
-        this.clearTokens();
-        return true;
-      }),
-      catchError(error => {
-        console.error('Error logging out:', error);
-        throw error;
-      })
-    );
+    return this.http.post<any>(`${this.apiUrl}/logout`, body, options);
   }
 
   private buildFormUrlEncodedBody(data: any): string {
@@ -102,12 +78,12 @@ export class AuthService {
     return new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
   }
 
-  private storeTokens(accessToken: string, refreshToken: string): void {
+  storeTokens(accessToken: string, refreshToken: string): void {
     localStorage.setItem(this.accessTokenKey, accessToken);
     localStorage.setItem(this.refreshTokenKey, refreshToken);
   }
 
-  private clearTokens(): void {
+  clearTokens(): void {
     localStorage.removeItem(this.accessTokenKey);
     localStorage.removeItem(this.refreshTokenKey);
   }

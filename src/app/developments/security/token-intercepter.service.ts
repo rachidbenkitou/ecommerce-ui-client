@@ -16,14 +16,14 @@ export class TokenInterceptorService implements HttpInterceptor {
 
     // If token exists, add it to the request headers
     if (token && !request.url.includes('/login')) {
-      // alert(token)
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
         }
       });
-    }
 
+      console.log(request)
+    }
     return next.handle(request);
   }
 }
