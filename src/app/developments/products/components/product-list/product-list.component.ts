@@ -17,6 +17,8 @@ export class ProductListComponent implements OnInit {
   @Input() isViewAllProductShown: boolean = true;
   @Input() GreenTitle: string = 'No Text Provided';
   @Input() BlackTitle: string = 'No Text Provided';
+  showNoProductsMessage: boolean = false;
+
 
   constructor(
     private productService: ProductsService,
@@ -35,6 +37,12 @@ export class ProductListComponent implements OnInit {
 
 
   ngOnInit(): void {
+    // Simulate fetching products data (replace with your actual data fetching logic)
+    setTimeout(() => {
+      if (this.products.length === 0) {
+        this.showNoProductsMessage = true;
+      }
+    }, 5000); // Show message after 3 seconds if productList is still empty
   }
 
 

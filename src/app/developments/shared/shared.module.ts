@@ -6,6 +6,7 @@ import {SlideComponent} from './components/landing-page/slide/slide.component';
 import {CommonModule} from "@angular/common";
 import {AlertComponent} from './components/alert/alert.component';
 import {CategoriesListComponent} from "./components/categories-list/categories-list.component";
+import { SkeletonComponent } from './components/skeleton/skeleton.component';
 
 @NgModule({
   declarations: [
@@ -14,16 +15,18 @@ import {CategoriesListComponent} from "./components/categories-list/categories-l
     DealsComponent,
     SlideComponent,
     AlertComponent,
-    CategoriesListComponent
+    CategoriesListComponent,
+    SkeletonComponent
   ],
-  exports: [
-    BreadcrumbComponent,
-    DealsComponent,
-    SlideComponent,
-    CommonModule,
-    AlertComponent,
-    CategoriesListComponent
-  ],
+    exports: [
+        BreadcrumbComponent,
+        DealsComponent,
+        SlideComponent,
+        CommonModule,
+        AlertComponent,
+        CategoriesListComponent,
+        SkeletonComponent
+    ],
   imports: [
     CommonModule
   ]

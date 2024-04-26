@@ -11,11 +11,19 @@ export class CategoriesListComponent implements OnInit {
 
   @Input() categoriesList: any[] = [];
   swiper: Swiper | undefined; // Define swiper as optional
+  showNoProductsMessage: boolean = false;
+
 
   constructor(private elementRef: ElementRef, private router: Router) {
   }
 
   ngOnInit(): void {
+    // Simulate fetching products data (replace with your actual data fetching logic)
+    setTimeout(() => {
+      if (this.categoriesList.length === 0) {
+        this.showNoProductsMessage = true;
+      }
+    }, 5000); // Show message after 3 seconds if productList is still empty
     this.swiper = new Swiper(this.elementRef.nativeElement.querySelector('.categories__container'), {
       spaceBetween: 24,
       loop: true,

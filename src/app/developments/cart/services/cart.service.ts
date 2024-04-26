@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {environment} from "../../../../environements/environement";
 import {AuthService} from "../../security/auth.service";
 import {ProductsService} from "../../products/services/products.service";
-import {IndividualConfig, ToastrService} from "ngx-toastr";
+import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
 import {ToastrConfigHelper} from "../../shared/models/toastr-config-helper";
 
@@ -13,6 +13,7 @@ import {ToastrConfigHelper} from "../../shared/models/toastr-config-helper";
 })
 export class CartService {
   private url: string = `${environment.appUrl}`;
+
   constructor(private http: HttpClient, private authService: AuthService,
               private productService: ProductsService,
               private toastr: ToastrService,
@@ -27,16 +28,18 @@ export class CartService {
       return this.http.post<any>(`${this.url}sales`, OrderData);
     }
   }
+
   placePackageOrder(OrderData: any): Observable<any> {
-      return this.http.post<any>(`${this.url}clientOrders/package`, OrderData);
+    return this.http.post<any>(`${this.url}clientOrders/package`, OrderData);
   }
+
   addToCart(product: any) {
     product.quantity = 1
     let cart = JSON.parse(localStorage.getItem('cart') || '[]');
 
     if (cart.some((item: any) => item.id === product.id)) {
       // alert('Product already exists in cart!');
-      this.toastr.error('Product already exists in cart!', 'Failed!',ToastrConfigHelper.getCustomConfig());
+      this.toastr.error('Product already exists in cart!', 'Failed!', ToastrConfigHelper.getCustomConfig());
 
     } else {
       cart.push(product);
@@ -87,18 +90,22 @@ export class CartService {
 
 
   placeSaleOrder(saleData: any): void {
-    console.log(saleData)
     this.http.post<any>(`${this.url}sales`, saleData).subscribe(
       response => {
-        this.toastr.success('Your order has been sent successfully!', 'Success!',ToastrConfigHelper.getCustomConfig());
+        this.toastr.success('Your order has been sent successfully!', 'Success!', ToastrConfigHelper.getCustomConfig());
         this.cart = [];
         localStorage.removeItem('cart');
         this.productService.incrementProductCount();
         this.router.navigate(["products/homePage"])
       },
       error => {
-        this.toastr.error('Error placing sale order. Please try again later.', 'Error!',ToastrConfigHelper.getCustomConfig());
+        this.toastr.error('Error placing sale order. Please try again later.', 'Error!', ToastrConfigHelper.getCustomConfig());
       }
     );
+  }
+
+  getClientOrdersById(): Observable<any> {
+    const clientUsername: string = localStorage.getItem("bokeito-ecommerce-service-logged-client") || 'No Client Username Found';
+    return this.http.get<any>(`${this.url}clientOrders/byClient/${clientUsername}`);
   }
 }

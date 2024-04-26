@@ -6,10 +6,11 @@
     <h3 class="section__title"><span>{{this.GreenTitle}}</span> {{this.BlackTitle}}</h3>
   </div>
 
+  <app-skeleton *ngIf="!showNoProductsMessage && products.length===0"></app-skeleton>
+  <app-alert *ngIf="showNoProductsMessage" [message]="'No Product Found'"></app-alert>
   <div class="tab__items">
     <div class="tab__item active-tab">
-      <div class="products__container grid">
-
+      <div class="products__container  grid">
 
         <div class="product__item" *ngFor="let product of products">
           <div class="product__banner">

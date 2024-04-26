@@ -16,7 +16,7 @@ export class PackageListComponent implements OnInit {
   @Input() isViewAllProductShown: boolean = true;
   @Input() GreenTitle: string = 'No Text Provided';
   @Input() BlackTitle: string = 'No Text Provided';
-
+  showNoProductsMessage: boolean = false;
   constructor(
     private packageService: PackageService,
     private toastr: ToastrService,
@@ -28,6 +28,12 @@ export class PackageListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Simulate fetching products data (replace with your actual data fetching logic)
+    setTimeout(() => {
+      if (this.packages.length === 0) {
+        this.showNoProductsMessage = true;
+      }
+    }, 5000); // Show message after 3 seconds if productList is still empty
   }
 
 }

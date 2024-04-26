@@ -1,12 +1,16 @@
 import {Injectable} from '@angular/core';
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {catchError, Observable, throwError} from 'rxjs';
 import {AuthService} from "./auth.service";
+import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
+import {ToastrConfigHelper} from "../shared/models/toastr-config-helper";
 
 @Injectable()
 export class TokenInterceptorService implements HttpInterceptor {
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router, private toastr: ToastrService,
+  ) {
   }
 
   // intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
@@ -39,6 +43,14 @@ export class TokenInterceptorService implements HttpInterceptor {
       });
 
     }
-    return next.handle(request);
+    return next.handle(request).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401 && !request.url.includes('/login')) {
+          // If the response status is 401 (Unauthorized), the token has expired
+          this.router.navigate(['/loginRegister']);
+          this.toastr.error('You have to sign in!', 'Error!', ToastrConfigHelper.getCustomConfig());
+        }
+        return throwError(error);
+      }))
   }
 }

@@ -2,8 +2,13 @@
   <div class="tab__btns center-element">
     <h3 class="section__title"><span>Popular</span> Categories</h3>
   </div>
+  <app-skeleton *ngIf="categoriesList.length===0 && !showNoProductsMessage"></app-skeleton>
+  <app-alert message="No category found" *ngIf="showNoProductsMessage"></app-alert>
 
-    <div class="categories__container swiper " >
+
+
+  <div>
+    <div class="categories__container swiper">
       <div class="swiper-wrapper">
         <a class="category__item swiper-slide" *ngFor="let category of categoriesList">
           <img (click)="goToProductsByCategoryPage(category.id)" [src]="'assets/img/' + category?.categoryImagePath" [alt]="category?.categoryImagePath"
@@ -12,11 +17,12 @@
         </a>
       </div>
 
-      <div class="swiper-button-next" (click)="navigateNext()">
+      <div class="swiper-button-next"  (click)="navigateNext()">
         <i class="fi fi-rs-angle-right"></i>
       </div>
       <div class="swiper-button-prev" (click)="navigatePrev()">
         <i class="fi fi-rs-angle-left"></i>
       </div>
     </div>
+  </div>
 </section>

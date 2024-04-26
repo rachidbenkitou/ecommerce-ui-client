@@ -1,3 +1,44 @@
+<!--<div class="tab__content" content id="orders" [class.active-tab]="this.data.activeTab === 'orders'">-->
+<!--  <h3 class="tab__header">Track Your Orders</h3>-->
+
+<!--  <div class="tab__body">-->
+<!--    <table class="placed__order-my-table">-->
+<!--      <tr>-->
+<!--        <th>Orders</th>-->
+<!--        <th>Date</th>-->
+<!--        <th>Status</th>-->
+<!--        <th>Total</th>-->
+<!--        <th>Actions</th>-->
+<!--      </tr>-->
+
+<!--      <tr>-->
+<!--        <td>#1357</td>-->
+<!--        <td>March 45, 2020</td>-->
+<!--        <td>Processing</td>-->
+<!--        <td>$125.00</td>-->
+<!--        <td><a href="#" class="view__order">View</a></td>-->
+<!--      </tr>-->
+
+<!--      <tr>-->
+<!--        <td>#12468</td>-->
+<!--        <td>June 29, 2020</td>-->
+<!--        <td>Completed</td>-->
+<!--        <td>$364.00</td>-->
+<!--        <td><a href="#" class="view__order">View</a></td>-->
+<!--      </tr>-->
+
+<!--      <tr>-->
+<!--        <td>#1357</td>-->
+<!--        <td>August 02, 2020</td>-->
+<!--        <td>Completed</td>-->
+<!--        <td>$280.00</td>-->
+<!--        <td><a href="#" class="view__order">View</a></td>-->
+<!--      </tr>-->
+<!--    </table>-->
+<!--  </div>-->
+<!--</div>-->
+
+
 <div class="tab__content" content id="orders" [class.active-tab]="this.data.activeTab === 'orders'">
   <h3 class="tab__header">Track Your Orders</h3>
 
@@ -8,31 +49,13 @@
         <th>Date</th>
         <th>Status</th>
         <th>Total</th>
-        <th>Actions</th>
       </tr>
 
-      <tr>
-        <td>#1357</td>
-        <td>March 45, 2020</td>
-        <td>Processing</td>
-        <td>$125.00</td>
-        <td><a href="#" class="view__order">View</a></td>
-      </tr>
-
-      <tr>
-        <td>#12468</td>
-        <td>June 29, 2020</td>
-        <td>Completed</td>
-        <td>$364.00</td>
-        <td><a href="#" class="view__order">View</a></td>
-      </tr>
-
-      <tr>
-        <td>#1357</td>
-        <td>August 02, 2020</td>
-        <td>Completed</td>
-        <td>$280.00</td>
-        <td><a href="#" class="view__order">View</a></td>
+      <tr *ngFor="let order of clientOrderList">
+        <td>{{ order.id }}</td>
+        <td>{{ order.dateCreation }}</td>
+        <td>{{ order.clientOrderStatusName || 'In Progress' }} </td>
+        <td>{{ order.totalPrice }} MAD</td>
       </tr>
     </table>
   </div>

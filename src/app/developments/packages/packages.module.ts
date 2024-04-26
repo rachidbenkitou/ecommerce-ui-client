@@ -7,6 +7,7 @@ import {PackageListComponent} from "./components/package-list/package-list.compo
 import { PackagePageComponent } from './components/package-page/package-page.component';
 import {NgSelectModule} from "@ng-select/ng-select";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -14,13 +15,14 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     PackagesPageComponent,
     PackagePageComponent,
   ],
-  imports: [
-    RouterModule.forChild(PackageRoute),
-    CommonModule,
-    NgSelectModule,
-    ReactiveFormsModule,
-    FormsModule,
-  ],
+    imports: [
+        RouterModule.forChild(PackageRoute),
+        CommonModule,
+        NgSelectModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SharedModule,
+    ],
   // exports: [PackageListComponent]
 })
 export class PackageModule {

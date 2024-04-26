@@ -22,6 +22,11 @@ export class AuthService {
     this.clearTokens();
   }
 
+  register(formData: any): Observable<any> {
+    const url = `${this.apiUrl}`; // Assuming your API endpoint for registration is /register
+    return this.http.post(url, formData);
+  }
+
   login(username: string, password: string): Observable<any> {
     // Check if both access token and refresh token are present in local storage
     const hasAccessToken = !!this.getAccessToken();

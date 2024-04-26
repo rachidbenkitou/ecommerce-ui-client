@@ -1,0 +1,106 @@
+///* SCSS for Skeleton Loading */
+//
+///* Skeleton loading container */
+//.skeleton-loading {
+//  display: flex;
+//  flex-wrap: wrap;
+//  justify-content: space-between; // Ensure items are evenly spaced
+//}
+//
+///* Skeleton product item */
+//.skeleton-product {
+//  flex-basis: calc(33.33% - 20px); // Adjust width to fit three items with margins
+//  padding: 20px;
+//  margin-bottom: 20px; // Add margin to the bottom
+//  background-color: #f0f0f0;
+//  border-radius: 5px;
+//
+//  @media (max-width: 992px) {
+//    flex-basis: 100%; // Take full width on smaller screens
+//  }
+//}
+//
+///* Skeleton product image */
+//.skeleton-product-image {
+//  width: 100%; // Make image fill the container
+//  height: 150px; // Set height
+//  background-color: #ddd;
+//  border-radius: 5px;
+//  margin-bottom: 10px; // Add margin to the bottom
+//}
+//
+///* Skeleton product details */
+//.skeleton-product-details {
+//  padding: 0 10px; // Add padding to the details
+//}
+//
+///* Skeleton product detail elements */
+//.skeleton-product-category,
+//.skeleton-product-title,
+//.skeleton-product-rating,
+//.skeleton-product-price {
+//  width: 100%;
+//  height: 15px;
+//  background-color: #ddd;
+//  margin-bottom: 5px;
+//}
+
+
+/* SCSS for Skeleton Loading */
+
+/* Define keyframe animation */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0.5; /* Start with lower opacity */
+  }
+  50% {
+    opacity: 1; /* Increase opacity */
+  }
+  100% {
+    opacity: 0.5; /* Return to lower opacity */
+  }
+}
+
+/* Skeleton loading container */
+.skeleton-loading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Ensure items are evenly spaced */
+}
+
+/* Skeleton product item */
+.skeleton-product {
+  flex-basis: calc(33.33% - 20px); /* Adjust width to fit three items with margins */
+  padding: 20px;
+  margin-bottom: 20px; /* Add margin to the bottom */
+  background-color: #f0f0f0;
+  border-radius: 5px;
+
+  /* Apply animation */
+  animation: fadeInOut 2s ease infinite; /* Example: 2 seconds duration, ease easing, infinite loop */
+}
+
+/* Skeleton product image */
+.skeleton-product-image {
+  width: 100%; /* Make image fill the container */
+  height: 150px; /* Set height */
+  background-color: #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px; /* Add margin to the bottom */
+}
+
+/* Skeleton product details */
+.skeleton-product-details {
+  padding: 0 10px; /* Add padding to the details */
+}
+
+/* Skeleton product detail elements */
+.skeleton-product-category,
+.skeleton-product-title,
+.skeleton-product-rating,
+.skeleton-product-price {
+  width: 100%;
+  height: 15px;
+  background-color: #ddd;
+  margin-bottom: 5px;
+}
